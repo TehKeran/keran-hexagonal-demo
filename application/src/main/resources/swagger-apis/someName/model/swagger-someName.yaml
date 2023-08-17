@@ -1,0 +1,15 @@
+components:
+  schemas:
+    someNameApiObject:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        # new fields go here:
+
+        lastUpdate:
+          type: "string"
+          format: "date"
+        modifiedBy:
+          type: "string"

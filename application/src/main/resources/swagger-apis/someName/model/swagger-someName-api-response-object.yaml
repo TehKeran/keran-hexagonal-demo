@@ -1,0 +1,11 @@
+components:
+  schemas:
+    someNameResponseObject:
+      type: "object"
+      properties:
+        common:
+          $ref: "../../common/swagger-common.yaml#/components/schemas/common"
+        someNameApiObjects:
+          type: "array"
+          items:
+            $ref: "swagger-someName.yaml#/components/schemas/someNameApiObject"

@@ -1,0 +1,14 @@
+components:
+  schemas:
+    common:
+      type: "object"
+      properties:
+        responseCode:
+          type: "HttpStatus"
+        message:
+          type: "string"
+        wasSuccess:
+          type: "boolean"
+        exception:
+          type: "RuntimeException"
+          required: false

@@ -8,8 +8,8 @@ components:
           format: "uuid"
         # new fields go here:
 
-        lastUpdate:
+        lastModificationOn:
           type: "string"
           format: "date"
-        modifiedBy:
+        lastModificationBy:
           type: "string"

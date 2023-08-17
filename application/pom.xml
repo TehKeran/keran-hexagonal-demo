@@ -7,6 +7,136 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>application</artifactId>
-    <name>Archetype - application</name>
-    <url>http://maven.apache.org</url>
+    <name>keran-hexagonal-demo-application</name>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <openapi-generator-swagger-folder-path>${project.basedir}/src/main/resources/swagger-apis</openapi-generator-swagger-folder-path>
+        <api-package>org.keran.application.controller</api-package>
+        <model-package>org.keran.infrastructure.data</model-package>
+        <swagger-ui-folder>${project.build.directory}/classes/swagger-ui</swagger-ui-folder>
+    </properties>
+
+    <dependencies>
+        <!-- Please see parent POM for common dependencies -->
+
+        <!-- Module-specific dependencies -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2-servlet-initializer-v2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.codegen.v3</groupId>
+            <artifactId>swagger-codegen-maven-plugin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Inter-module dependencies -->
+        <dependency>
+            <groupId>org.keran</groupId>
+            <artifactId>domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>swagger-apis/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.4.0</version>
+                <executions>
+                    <execution>
+                        <id>someName-Delete-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/someName/rest/swagger-someName-delete.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.someName</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

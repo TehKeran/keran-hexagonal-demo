@@ -7,6 +7,7 @@ import org.keran.domain.data.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ContactEmailDto extends AbstractEntity {
+    private PersonDto personDto;
     private String emailAddress;
     private boolean isPrimaryEmail;
 }

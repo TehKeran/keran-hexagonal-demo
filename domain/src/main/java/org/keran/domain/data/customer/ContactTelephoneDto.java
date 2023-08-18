@@ -7,7 +7,8 @@ import org.keran.domain.data.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ContactTelephoneDto extends AbstractEntity {
-    private String telephoneNumberCountryCode;
+    private PersonDto personDto;
+    private String countryCode;
     private String telephoneNumber;
     private boolean isPrimaryTelephoneNumber;
 }

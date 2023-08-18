@@ -7,6 +7,7 @@ import org.keran.domain.data.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AddressDto extends AbstractEntity {
+    private PersonDto personDto;
     private String country;
     private String region;
     private String province;

@@ -4,7 +4,7 @@ import com.querydsl.core.annotations.QueryEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.keran.infrastructure.data.postgres.AbstractPostgresEntity;
-import org.keran.infrastructure.data.postgres.loyalty.LoyaltyProgramPostgres;
+import org.keran.infrastructure.data.postgres.loyaltyProgram.LoyaltyProgramPostgres;
 
 import javax.persistence.*;
 

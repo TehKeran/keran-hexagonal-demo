@@ -7,6 +7,7 @@ import org.keran.domain.data.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ConsentDto extends AbstractEntity {
+    private CustomerDto customerDto;
     private String consentName;
     private Boolean isGranted;
 }

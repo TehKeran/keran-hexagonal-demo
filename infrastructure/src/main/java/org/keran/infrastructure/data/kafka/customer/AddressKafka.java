@@ -1,13 +1,17 @@
-package org.keran.domain.data.customer;
+package org.keran.infrastructure.data.kafka.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.keran.domain.data.AbstractEntity;
+import org.keran.infrastructure.data.kafka.AbstractKafkaEntity;
+
+import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AddressDto extends AbstractEntity {
-    private PersonDto personDto;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AddressKafka extends AbstractKafkaEntity {
+    private UUID personId;
     private String country;
     private String region;
     private String province;

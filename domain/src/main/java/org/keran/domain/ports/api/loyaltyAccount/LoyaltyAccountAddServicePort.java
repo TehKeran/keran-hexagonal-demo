@@ -1,7 +1,7 @@
 package org.keran.domain.ports.api.loyaltyAccount;
 
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
-import org.keran.domain.data.loyaltyAccountTransactionHistory.LoyaltyAccountTransactionHistoryDto;
+import org.keran.domain.data.loyaltyAccount.LoyaltyAccountTransactionHistoryDto;
 
 public interface LoyaltyAccountAddServicePort {
     LoyaltyAccountDto addLoyaltyAccount(LoyaltyAccountDto loyaltyAccountDto);

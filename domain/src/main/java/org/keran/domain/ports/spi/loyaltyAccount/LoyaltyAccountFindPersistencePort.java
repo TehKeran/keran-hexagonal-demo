@@ -1,7 +1,7 @@
 package org.keran.domain.ports.spi.loyaltyAccount;
 
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
-import org.keran.domain.data.loyaltyAccountTransactionHistory.LoyaltyAccountTransactionHistoryDto;
+import org.keran.domain.data.loyaltyAccount.LoyaltyAccountTransactionHistoryDto;
 
 import java.util.List;
 import java.util.UUID;

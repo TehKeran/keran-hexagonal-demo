@@ -12,7 +12,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddressKafka extends AbstractKafkaEntity {
     private UUID personId;
-    private String country;
+    private String countryIso3Code;
     private String region;
     private String province;
     private String city;

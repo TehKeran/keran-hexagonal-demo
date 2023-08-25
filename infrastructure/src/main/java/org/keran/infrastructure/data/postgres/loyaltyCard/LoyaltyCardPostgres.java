@@ -19,7 +19,7 @@ public class LoyaltyCardPostgres extends AbstractPostgresEntity {
     @JoinColumn(name = "loyalty_customer_id", referencedColumnName = "id", nullable = false)
     private LoyaltyCustomerPostgres loyaltyCustomerPostgres;
 
-    @JoinColumn(name = "card_type_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "loyalty_card_type_id", referencedColumnName = "id", nullable = false)
     private DefLoyaltyCardTypePostgres cardType;
 
     @Column(name = "card_number", unique = true, nullable = false, length = 55)

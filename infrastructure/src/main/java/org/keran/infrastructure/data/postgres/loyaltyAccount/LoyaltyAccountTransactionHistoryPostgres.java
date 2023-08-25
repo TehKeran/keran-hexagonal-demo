@@ -22,12 +22,12 @@ public class LoyaltyAccountTransactionHistoryPostgres extends AbstractPostgresEn
     private LocalDateTime dateOfTransaction;
 
     @Column(name = "previous_balance", nullable = false)
-    private double previousBalance;
+    private int previousBalance;
 
     @Column(name = "amount", nullable = false)
     private double amount;
 
-    @Column(name = "newBalance", nullable = false)
+    @Column(name = "new_balance", nullable = false)
     private double newBalance;
 
     @Column(name = "comment")

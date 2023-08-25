@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 public class LoyaltyAccountDto extends AbstractEntity {
     private LoyaltyCustomerDto loyaltyCustomerDto;
     private LoyaltyProgramDto loyaltyProgramDto;
+    private LoyaltyAccountTypeEnum loyaltyAccountType;
     private String accountNumber;
     private String externalAccountNumber;
-    private LoyaltyAccountTypeEnum accountType;
     private LocalDateTime startDate;
     private LocalDateTime closeDate;
 

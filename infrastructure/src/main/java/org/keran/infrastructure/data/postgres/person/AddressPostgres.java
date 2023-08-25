@@ -17,8 +17,8 @@ public class AddressPostgres extends AbstractPostgresEntity {
     @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
     private PersonPostgres personPostgres;
 
-    @Column(name = "country", nullable = false)
-    private String country;
+    @Column(name = "country_iso_3_code", nullable = false)
+    private String countryIso3Code;
 
     @Column(name = "region")
     private String region;

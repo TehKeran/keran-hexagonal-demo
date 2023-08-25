@@ -24,11 +24,11 @@ public class AbstractPostgresEntity {
     @CreatedBy
     @ReadOnlyProperty
     @Nationalized
-    @Column(name = "modification_by")
-    protected String modificationBy;
+    @Column(name = "last_modification_by")
+    protected String lastModificationBy;
 
     @CreatedDate
     @ReadOnlyProperty
-    @Column(name = "modification_on")
-    protected LocalDateTime modificationOn;
+    @Column(name = "last_modification_on")
+    protected LocalDateTime lastModificationOn;
 }

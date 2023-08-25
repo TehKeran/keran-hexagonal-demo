@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS def_loyalty_card_type CASCADE;
+DROP TABLE IF EXISTS def_loyalty_account_type CASCADE;
+DROP TABLE IF EXISTS loyalty_customer CASCADE;
+DROP TABLE IF EXISTS loyalty_account CASCADE;
+DROP TABLE IF EXISTS loyalty_account_transaction_history CASCADE;
+DROP TABLE IF EXISTS loyalty_card CASCADE;
+DROP TABLE IF EXISTS loyalty_event CASCADE;
+DROP TABLE IF EXISTS loyalty_event_configuration CASCADE;
+DROP TABLE IF EXISTS loyalty_event_occurrence CASCADE;
+DROP TABLE IF EXISTS loyalty_program CASCADE;
+DROP TABLE IF EXISTS loyalty_point CASCADE;
+DROP TABLE IF EXISTS loyalty_point_balance CASCADE;
+DROP TABLE IF EXISTS person CASCADE;
+DROP TABLE IF EXISTS consent CASCADE;
+DROP TABLE IF EXISTS contact_email CASCADE;
+DROP TABLE IF EXISTS contact_telephone CASCADE;
+DROP TABLE IF EXISTS address CASCADE;

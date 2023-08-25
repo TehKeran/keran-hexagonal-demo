@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @QueryEntity
 @Table(name = "loyalty_point")
 public class LoyaltyPointPostgres extends AbstractPostgresEntity {
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     @Column(name = "image_url", nullable = false)

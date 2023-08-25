@@ -13,7 +13,4 @@ import javax.persistence.MappedSuperclass;
 public class AbstractPostgresDefEntity extends AbstractPostgresEntity {
     @Column(name = "value", nullable = false)
     protected String value;
-
-    @Column(name = "default_value")
-    protected String default_value;
 }

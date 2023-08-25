@@ -23,5 +23,5 @@ public class LoyaltyEventConfigurationPostgres extends AbstractPostgresEntity {
     private LoyaltyEventPostgres loyaltyEventPostgres;
 
     @Column(name = "loyalty_points_to_award",  nullable = false)
-    private double loyaltyPointsToAward;
+    private int loyaltyPointsToAward;
 }

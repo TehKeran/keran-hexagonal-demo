@@ -21,7 +21,7 @@ public interface LoyaltyAccountMapper {
     List<LoyaltyAccountPostgres> loyaltyAccountDtoListToPostgresList(List<LoyaltyAccountDto> loyaltyAccountDtoList);
 
     static LoyaltyAccountTypeEnum map(DefLoyaltyAccountTypePostgres value){
-        return LoyaltyAccountTypeEnum.valueOf(value.getValue());
+        return LoyaltyAccountTypeEnum.findByName(value.getValue());
     }
 
 }

@@ -1,6 +1,8 @@
 package org.keran.infrastructure.mappers.loyaltyCard;
 
 import org.keran.domain.data.loyaltyCard.LoyaltyCardDto;
+import org.keran.domain.definition.LoyaltyCardTypeEnum;
+import org.keran.infrastructure.data.postgres.definitions.DefLoyaltyCardTypePostgres;
 import org.keran.infrastructure.data.postgres.loyaltyCard.LoyaltyCardPostgres;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
@@ -17,4 +19,7 @@ public interface LoyaltyCardMapper {
     List<LoyaltyCardDto> loyaltyCardPostgresListToDtoList(List<LoyaltyCardPostgres> loyaltyCardPostgresList);
     List<LoyaltyCardPostgres> loyaltyCardDtoListToPostgresList(List<LoyaltyCardDto> loyaltyCardDtoList);
 
+    default LoyaltyCardTypeEnum map(DefLoyaltyCardTypePostgres value) {
+        return LoyaltyCardTypeEnum.findByName(value.getValue());
+    }
 }

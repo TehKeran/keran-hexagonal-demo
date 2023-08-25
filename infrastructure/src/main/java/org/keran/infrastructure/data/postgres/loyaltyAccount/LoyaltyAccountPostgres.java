@@ -27,13 +27,13 @@ public class LoyaltyAccountPostgres extends AbstractPostgresEntity {
     private LoyaltyProgramPostgres loyaltyProgramPostgres;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "account_type_id", referencedColumnName = "id", nullable = false)
-    private DefLoyaltyAccountTypePostgres accountType;
+    @JoinColumn(name = "loyalty_account_type_id", referencedColumnName = "id", nullable = false)
+    private DefLoyaltyAccountTypePostgres loyaltyAccountType;
 
-    @Column(name = "account_number", nullable = false)
+    @Column(name = "account_number", unique = true, nullable = false)
     private String accountNumber;
 
-    @Column(name = "external_account_number", nullable = false)
+    @Column(name = "external_account_number")
     private String externalAccountNumber;
 
     @Column(name = "start_date", nullable = false)

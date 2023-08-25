@@ -1,4 +1,4 @@
-package org.keran.domain.data.loyaltyAccountTransactionHistory;
+package org.keran.domain.data.loyaltyAccount;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

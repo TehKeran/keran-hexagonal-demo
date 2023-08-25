@@ -1,11 +1,13 @@
 package org.keran.infrastructure.adapters.postgres.loyaltyAccount;
 
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
-import org.keran.domain.data.loyaltyAccountTransactionHistory.LoyaltyAccountTransactionHistoryDto;
+import org.keran.domain.data.loyaltyAccount.LoyaltyAccountTransactionHistoryDto;
 import org.keran.domain.ports.spi.loyaltyAccount.LoyaltyAccountFindPersistencePort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+@Service
 
 public class LoyaltyAccountFindAdapter implements LoyaltyAccountFindPersistencePort {
     @Override

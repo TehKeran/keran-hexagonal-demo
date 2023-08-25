@@ -8,7 +8,7 @@ import org.keran.domain.data.AbstractEntity;
 @Data
 public class AddressDto extends AbstractEntity {
     private PersonDto personDto;
-    private String country;
+    private String countryIso3Code;
     private String region;
     private String province;
     private String city;

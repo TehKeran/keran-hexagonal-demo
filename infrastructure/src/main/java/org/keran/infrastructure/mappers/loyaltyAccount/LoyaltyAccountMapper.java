@@ -1,4 +1,4 @@
-package org.keran.infrastructure.mappers;
+package org.keran.infrastructure.mappers.loyaltyAccount;
 
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
 import org.keran.domain.definition.LoyaltyAccountTypeEnum;
@@ -17,8 +17,8 @@ public interface LoyaltyAccountMapper {
     //@Mapping(source="id", target = "id")
     LoyaltyAccountDto loyaltyAccountPostgresToDto(LoyaltyAccountPostgres loyaltyAccountPostgres);
     LoyaltyAccountPostgres loyaltyAccountDtoToPostgres(LoyaltyAccountDto loyaltyAccountDto);
-    List<LoyaltyAccountDto> loyaltyAccountPostgresListToDtoList(List<LoyaltyAccountPostgres> loyaltyAccountPostgres);
-    List<LoyaltyAccountPostgres> loyaltyAccountDtoListToPostgresList(List<LoyaltyAccountDto> loyaltyAccountDto);
+    List<LoyaltyAccountDto> loyaltyAccountPostgresListToDtoList(List<LoyaltyAccountPostgres> loyaltyAccountPostgresList);
+    List<LoyaltyAccountPostgres> loyaltyAccountDtoListToPostgresList(List<LoyaltyAccountDto> loyaltyAccountDtoList);
 
     static LoyaltyAccountTypeEnum map(DefLoyaltyAccountTypePostgres value){
         return LoyaltyAccountTypeEnum.valueOf(value.getValue());

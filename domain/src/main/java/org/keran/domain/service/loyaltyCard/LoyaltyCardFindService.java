@@ -6,6 +6,7 @@ import org.keran.domain.ports.spi.loyaltyCard.LoyaltyCardFindPersistencePort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Service
 public class LoyaltyCardFindService implements LoyaltyCardFindServicePort {
@@ -16,12 +17,12 @@ public class LoyaltyCardFindService implements LoyaltyCardFindServicePort {
     }
 
     @Override
-    public LoyaltyCardDto findLoyaltyCardById(UUID id) {
+    public Optional<LoyaltyCardDto> findLoyaltyCardById(UUID id) {
         return loyaltyCardFindPersistencePort.findLoyaltyCardById(id);
     }
 
     @Override
-    public LoyaltyCardDto findLoyaltyCardByNumber(String cardNumber) {
+    public Optional<LoyaltyCardDto> findLoyaltyCardByNumber(String cardNumber) {
         return loyaltyCardFindPersistencePort.findLoyaltyCardByNumber(cardNumber);
     }
 

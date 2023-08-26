@@ -6,6 +6,8 @@ import org.keran.domain.ports.api.loyaltyAccount.LoyaltyAccountAddServicePort;
 import org.keran.domain.ports.spi.loyaltyAccount.LoyaltyAccountAddPersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoyaltyAccountAddService implements LoyaltyAccountAddServicePort {
     private final LoyaltyAccountAddPersistencePort loyaltyAccountAddPersistencePort;
@@ -15,12 +17,12 @@ public class LoyaltyAccountAddService implements LoyaltyAccountAddServicePort {
     }
 
     @Override
-    public LoyaltyAccountDto addLoyaltyAccount(LoyaltyAccountDto loyaltyAccountDto) {
+    public Optional<LoyaltyAccountDto> addLoyaltyAccount(LoyaltyAccountDto loyaltyAccountDto) {
         return loyaltyAccountAddPersistencePort.addLoyaltyAccount(loyaltyAccountDto);
     }
 
     @Override
-    public LoyaltyAccountTransactionHistoryDto addLoyaltyAccountTransactionHistory(LoyaltyAccountTransactionHistoryDto loyaltyAccountTransactionHistoryDto) {
+    public Optional<LoyaltyAccountTransactionHistoryDto> addLoyaltyAccountTransactionHistory(LoyaltyAccountTransactionHistoryDto loyaltyAccountTransactionHistoryDto) {
         return loyaltyAccountAddPersistencePort.addLoyaltyAccountTransactionHistory(loyaltyAccountTransactionHistoryDto);
     }
 }

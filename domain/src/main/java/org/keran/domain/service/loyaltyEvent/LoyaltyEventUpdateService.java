@@ -6,6 +6,8 @@ import org.keran.domain.ports.api.loyaltyEvent.LoyaltyEventUpdateServicePort;
 import org.keran.domain.ports.spi.loyaltyEvent.LoyaltyEventUpdatePersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoyaltyEventUpdateService implements LoyaltyEventUpdateServicePort {
     private final LoyaltyEventUpdatePersistencePort loyaltyEventUpdatePersistencePort;
@@ -15,12 +17,12 @@ public class LoyaltyEventUpdateService implements LoyaltyEventUpdateServicePort 
     }
 
     @Override
-    public LoyaltyEventDto updateLoyaltyEvent(LoyaltyEventDto loyaltyEventDto) {
+    public Optional<LoyaltyEventDto> updateLoyaltyEvent(LoyaltyEventDto loyaltyEventDto) {
         return loyaltyEventUpdatePersistencePort.updateLoyaltyEvent(loyaltyEventDto);
     }
 
     @Override
-    public LoyaltyEventConfigurationDto updateLoyaltyEventConfiguration(LoyaltyEventConfigurationDto loyaltyEventConfigurationDto) {
+    public Optional<LoyaltyEventConfigurationDto> updateLoyaltyEventConfiguration(LoyaltyEventConfigurationDto loyaltyEventConfigurationDto) {
         return loyaltyEventUpdatePersistencePort.updateLoyaltyEventConfiguration(loyaltyEventConfigurationDto);
     }
 }

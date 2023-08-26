@@ -7,6 +7,7 @@ import org.keran.domain.ports.spi.loyaltyAccount.LoyaltyAccountFindPersistencePo
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,28 +19,23 @@ public class LoyaltyAccountFindService implements LoyaltyAccountFindServicePort 
     }
 
     @Override
-    public LoyaltyAccountDto findLoyaltyAccountById(UUID accountId) {
-        return loyaltyAccountFindPersistencePort.findLoyaltyAccountById(accountId);
+    public Optional<LoyaltyAccountDto> findLoyaltyAccountById(UUID id) {
+        return loyaltyAccountFindPersistencePort.findLoyaltyAccountById(id);
     }
 
     @Override
-    public LoyaltyAccountDto findLoyaltyAccountByNumber(String accountNumber) {
+    public Optional<LoyaltyAccountDto> findLoyaltyAccountByNumber(String accountNumber) {
         return loyaltyAccountFindPersistencePort.findLoyaltyAccountByNumber(accountNumber);
     }
 
     @Override
-    public LoyaltyAccountTransactionHistoryDto findLoyaltyAccountTransactionHistoryById(UUID transactionHistoryId) {
-        return loyaltyAccountFindPersistencePort.findLoyaltyAccountTransactionHistoryById(transactionHistoryId);
+    public Optional<LoyaltyAccountTransactionHistoryDto> findLoyaltyAccountTransactionHistoryById(UUID id) {
+        return loyaltyAccountFindPersistencePort.findLoyaltyAccountTransactionHistoryById(id);
     }
 
     @Override
     public List<LoyaltyAccountTransactionHistoryDto> getLoyaltyAccountTransactionHistoryByAccountId(UUID accountId) {
         return loyaltyAccountFindPersistencePort.getLoyaltyAccountTransactionHistoryByAccountId(accountId);
-    }
-
-    @Override
-    public List<LoyaltyAccountTransactionHistoryDto> getLoyaltyAccountTransactionHistoryByAccountNumber(String accountNumber) {
-        return loyaltyAccountFindPersistencePort.getLoyaltyAccountTransactionHistoryByAccountNumber(accountNumber);
     }
 
     @Override

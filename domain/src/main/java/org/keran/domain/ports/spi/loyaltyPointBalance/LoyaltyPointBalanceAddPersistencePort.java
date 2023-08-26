@@ -2,6 +2,8 @@ package org.keran.domain.ports.spi.loyaltyPointBalance;
 
 import org.keran.domain.data.loyaltyPointBalance.LoyaltyPointBalanceDto;
 
+import java.util.Optional;
+
 public interface LoyaltyPointBalanceAddPersistencePort {
-    LoyaltyPointBalanceDto addLoyaltyPointBalance(LoyaltyPointBalanceDto loyaltyPointBalanceDto);
+    Optional<LoyaltyPointBalanceDto> addLoyaltyPointBalance(LoyaltyPointBalanceDto loyaltyPointBalanceDto);
 }

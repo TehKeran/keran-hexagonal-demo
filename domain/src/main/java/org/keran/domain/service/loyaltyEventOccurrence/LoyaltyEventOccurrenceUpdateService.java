@@ -5,6 +5,8 @@ import org.keran.domain.ports.api.loyaltyEventOccurrence.LoyaltyEventOccurrenceU
 import org.keran.domain.ports.spi.loyaltyEventOccurrence.LoyaltyEventOccurrenceUpdatePersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoyaltyEventOccurrenceUpdateService implements LoyaltyEventOccurrenceUpdateServicePort {
     private final LoyaltyEventOccurrenceUpdatePersistencePort loyaltyEventOccurrenceUpdatePersistencePort;
@@ -14,7 +16,7 @@ public class LoyaltyEventOccurrenceUpdateService implements LoyaltyEventOccurren
     }
 
     @Override
-    public LoyaltyEventOccurrenceDto updateLoyaltyEventOccurrence(LoyaltyEventOccurrenceDto loyaltyEventOccurrenceDto) {
+    public Optional<LoyaltyEventOccurrenceDto> updateLoyaltyEventOccurrence(LoyaltyEventOccurrenceDto loyaltyEventOccurrenceDto) {
         return loyaltyEventOccurrenceUpdatePersistencePort.updateLoyaltyEventOccurrence(loyaltyEventOccurrenceDto);
     }
 }

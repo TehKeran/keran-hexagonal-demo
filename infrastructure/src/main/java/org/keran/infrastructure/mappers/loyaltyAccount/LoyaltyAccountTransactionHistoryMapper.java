@@ -15,7 +15,7 @@ public interface LoyaltyAccountTransactionHistoryMapper {
     LoyaltyAccountTransactionHistoryDto loyaltyAccountTransactionHistoryPostgresToDto(
             LoyaltyAccountTransactionHistoryPostgres loyaltyAccountTransactionHistoryPostgres);
     LoyaltyAccountTransactionHistoryPostgres loyaltyAccountTransactionHistoryDtoToPostgres(
-            LoyaltyAccountTransactionHistoryPostgres loyaltyAccountTransactionHistoryDto);
+            LoyaltyAccountTransactionHistoryDto loyaltyAccountTransactionHistoryDto);
     List<LoyaltyAccountTransactionHistoryDto> loyaltyAccountTransactionHistoryPostgresListToDtoList(
             List<LoyaltyAccountTransactionHistoryPostgres> loyaltyAccountTransactionHistoryPostgresList);
     List<LoyaltyAccountTransactionHistoryPostgres> loyaltyAccountTransactionHistoryDtoListToPostgresList(

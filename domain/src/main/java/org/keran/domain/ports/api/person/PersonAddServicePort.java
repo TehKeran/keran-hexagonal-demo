@@ -2,10 +2,12 @@ package org.keran.domain.ports.api.person;
 
 import org.keran.domain.data.person.*;
 
+import java.util.Optional;
+
 public interface PersonAddServicePort {
-    PersonDto addPerson(PersonDto personDto);
-    AddressDto addAddress(AddressDto addressDto);
-    ConsentDto addConsent(ConsentDto consentDto);
-    ContactEmailDto addContactEmail(ContactEmailDto contactEmailDto);
-    ContactTelephoneDto addContactTelephone(ContactTelephoneDto contactTelephoneDto);
+    Optional<PersonDto> addPerson(PersonDto personDto);
+    Optional<AddressDto> addAddress(AddressDto addressDto);
+    Optional<ConsentDto> addConsent(ConsentDto consentDto);
+    Optional<ContactEmailDto> addContactEmail(ContactEmailDto contactEmailDto);
+    Optional<ContactTelephoneDto> addContactTelephone(ContactTelephoneDto contactTelephoneDto);
 }

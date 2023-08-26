@@ -2,25 +2,43 @@ package org.keran.infrastructure.adapters.postgres.loyaltyPointBalance;
 
 import org.keran.domain.data.loyaltyPointBalance.LoyaltyPointBalanceDto;
 import org.keran.domain.ports.spi.loyaltyPointBalance.LoyaltyPointBalanceFindPersistencePort;
+import org.keran.infrastructure.data.postgres.loyaltyPointBalance.LoyaltyPointBalancePostgres;
+import org.keran.infrastructure.mappers.loyaltyPointBalance.LoyaltyPointBalanceMapper;
+import org.keran.infrastructure.repository.loyaltyPointBalance.LoyaltyPointBalanceRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Service
-
 public class LoyaltyPointBalanceFindAdapter implements LoyaltyPointBalanceFindPersistencePort {
+    private static Logger logger = LoggerFactory.getLogger(LoyaltyPointBalanceFindAdapter.class);
+    private final LoyaltyPointBalanceRepository loyaltyPointBalanceRepository;
+
+    public LoyaltyPointBalanceFindAdapter(LoyaltyPointBalanceRepository loyaltyPointBalanceRepository) {
+        this.loyaltyPointBalanceRepository = loyaltyPointBalanceRepository;
+    }
+
     @Override
-    public LoyaltyPointBalanceDto findLoyaltyPointBalanceById(UUID id) {
-        return null;
+    public Optional<LoyaltyPointBalanceDto> findLoyaltyPointBalanceById(UUID id) {
+        Optional<LoyaltyPointBalancePostgres> loyaltyPointBalancePostgres =
+                loyaltyPointBalanceRepository.findById(id);
+        return loyaltyPointBalancePostgres.map(LoyaltyPointBalanceMapper.INSTANCE::loyaltyPointBalancePostgresToDto);
     }
 
     @Override
     public List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountId(UUID accountId) {
-        return null;
+        List<LoyaltyPointBalancePostgres> loyaltyPointBalancePostgresList =
+                loyaltyPointBalanceRepository.findAllByLoyaltyAccountId(accountId);
+        return LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalancePostgresListToDtoList(loyaltyPointBalancePostgresList);
     }
 
     @Override
     public List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountIdAndLoyaltyPointId(UUID accountId, UUID loyaltyPointId) {
-        return null;
+        List<LoyaltyPointBalancePostgres> loyaltyPointBalancePostgresList =
+                loyaltyPointBalanceRepository.findAllByLoyaltyAccountIdAndLoyaltyPointId(accountId, loyaltyPointId);
+        return LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalancePostgresListToDtoList(loyaltyPointBalancePostgresList);
     }
 }

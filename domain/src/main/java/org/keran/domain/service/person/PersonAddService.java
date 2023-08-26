@@ -5,6 +5,8 @@ import org.keran.domain.ports.api.person.PersonAddServicePort;
 import org.keran.domain.ports.spi.person.PersonAddPersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PersonAddService implements PersonAddServicePort {
     private final PersonAddPersistencePort personAddPersistencePort;
@@ -14,27 +16,27 @@ public class PersonAddService implements PersonAddServicePort {
     }
 
     @Override
-    public PersonDto addPerson(PersonDto personDto) {
+    public Optional<PersonDto> addPerson(PersonDto personDto) {
         return personAddPersistencePort.addPerson(personDto);
     }
 
     @Override
-    public AddressDto addAddress(AddressDto addressDto) {
+    public Optional<AddressDto> addAddress(AddressDto addressDto) {
         return personAddPersistencePort.addAddress(addressDto);
     }
 
     @Override
-    public ConsentDto addConsent(ConsentDto consentDto) {
+    public Optional<ConsentDto> addConsent(ConsentDto consentDto) {
         return personAddPersistencePort.addConsent(consentDto);
     }
 
     @Override
-    public ContactEmailDto addContactEmail(ContactEmailDto contactEmailDto) {
+    public Optional<ContactEmailDto> addContactEmail(ContactEmailDto contactEmailDto) {
         return personAddPersistencePort.addContactEmail(contactEmailDto);
     }
 
     @Override
-    public ContactTelephoneDto addContactTelephone(ContactTelephoneDto contactTelephoneDto) {
+    public Optional<ContactTelephoneDto> addContactTelephone(ContactTelephoneDto contactTelephoneDto) {
         return personAddPersistencePort.addContactTelephone(contactTelephoneDto);
     }
 }

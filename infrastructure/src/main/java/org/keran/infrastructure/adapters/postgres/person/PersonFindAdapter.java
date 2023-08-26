@@ -2,59 +2,92 @@ package org.keran.infrastructure.adapters.postgres.person;
 
 import org.keran.domain.data.person.*;
 import org.keran.domain.ports.spi.person.PersonFindPersistencePort;
+import org.keran.infrastructure.data.postgres.person.*;
+import org.keran.infrastructure.mappers.person.*;
+import org.keran.infrastructure.repository.person.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 @Service
-
 public class PersonFindAdapter implements PersonFindPersistencePort {
-    @Override
-    public PersonDto findPersonById(UUID id) {
-        return null;
+    private static Logger logger = LoggerFactory.getLogger(PersonFindAdapter.class);
+    private final PersonRepository personRepository;
+    private final AddressRepository addressRepository;
+    private final ConsentRepository consentRepository;
+    private final ContactEmailRepository contactEmailRepository;
+    private final ContactTelephoneRepository contactTelephoneRepository;
+
+    public PersonFindAdapter(PersonRepository personRepository, AddressRepository addressRepository,
+                             ConsentRepository consentRepository, ContactEmailRepository contactEmailRepository,
+                             ContactTelephoneRepository contactTelephoneRepository) {
+        this.personRepository = personRepository;
+        this.addressRepository = addressRepository;
+        this.consentRepository = consentRepository;
+        this.contactEmailRepository = contactEmailRepository;
+        this.contactTelephoneRepository = contactTelephoneRepository;
     }
 
     @Override
-    public PersonDto findPersonByCustomerId(UUID customerId) {
-        return null;
+    public Optional<PersonDto> findPersonById(UUID id) {
+        Optional<PersonPostgres> personPostgres = personRepository.findById(id);
+        return personPostgres.map(PersonMapper.INSTANCE::personPostgresToDto);
     }
 
     @Override
-    public AddressDto findAddressById(UUID id) {
-        return null;
+    public Optional<PersonDto> findPersonByCustomerId(UUID customerId) {
+        Optional<PersonPostgres> personPostgres = personRepository.findByCustomerId(customerId);
+        return personPostgres.map(PersonMapper.INSTANCE::personPostgresToDto);
     }
 
     @Override
-    public AddressDto findAddressByPersonId(UUID personId) {
-        return null;
+    public Optional<AddressDto> findAddressById(UUID id) {
+        Optional<AddressPostgres> addressPostgres = addressRepository.findById(id);
+        return addressPostgres.map(AddressMapper.INSTANCE::addressPostgresToDto);
     }
 
     @Override
-    public ConsentDto findConsentById(UUID id) {
-        return null;
+    public Optional<AddressDto> findAddressByPersonId(UUID personId) {
+        Optional<AddressPostgres> addressPostgres = addressRepository.findByPersonId(personId);
+        return addressPostgres.map(AddressMapper.INSTANCE::addressPostgresToDto);
     }
 
     @Override
-    public ConsentDto findConsentByCustomerId(UUID customerId) {
-        return null;
+    public Optional<ConsentDto> findConsentById(UUID id) {
+        Optional<ConsentPostgres> consentPostgres = consentRepository.findById(id);
+        return consentPostgres.map(ConsentMapper.INSTANCE::consentPostgresToDto);
     }
 
     @Override
-    public ContactEmailDto findContactEmailById(UUID id) {
-        return null;
+    public Optional<ConsentDto> findConsentByCustomerId(UUID customerId) {
+        Optional<ConsentPostgres> consentPostgres = consentRepository.findByCustomerId(customerId);
+        return consentPostgres.map(ConsentMapper.INSTANCE::consentPostgresToDto);
     }
 
     @Override
-    public ContactEmailDto findContactEmailByEmail(String email) {
-        return null;
+    public Optional<ContactEmailDto> findContactEmailById(UUID id) {
+        Optional<ContactEmailPostgres> contactEmailPostgres = contactEmailRepository.findById(id);
+        return contactEmailPostgres.map(ContactEmailMapper.INSTANCE::contactEmailPostgresToDto);
     }
 
     @Override
-    public ContactTelephoneDto findContactTelephoneById(UUID id) {
-        return null;
+    public Optional<ContactEmailDto> findContactEmailByEmail(String email) {
+        Optional<ContactEmailPostgres> contactEmailPostgres = contactEmailRepository.findByEmail(email);
+        return contactEmailPostgres.map(ContactEmailMapper.INSTANCE::contactEmailPostgresToDto);
     }
 
     @Override
-    public ContactTelephoneDto findContactTelephoneByCountryCodeAndNumber(String countryCode, String number) {
-        return null;
+    public Optional<ContactTelephoneDto> findContactTelephoneById(UUID id) {
+        Optional<ContactTelephonePostgres> contactTelephonePostgres = contactTelephoneRepository.findById(id);
+        return contactTelephonePostgres.map(ContactTelephoneMapper.INSTANCE::contactTelephonePostgresToDto);
+    }
+
+    @Override
+    public Optional<ContactTelephoneDto> findContactTelephoneByCountryCodeAndNumber(String countryCode, String number) {
+        Optional<ContactTelephonePostgres> contactTelephonePostgres =
+                contactTelephoneRepository.findByCountryCodeAndNumber(countryCode, number);
+        return contactTelephonePostgres.map(ContactTelephoneMapper.INSTANCE::contactTelephonePostgresToDto);
     }
 }

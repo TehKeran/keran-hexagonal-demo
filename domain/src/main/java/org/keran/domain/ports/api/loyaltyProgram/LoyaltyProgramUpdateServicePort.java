@@ -2,6 +2,8 @@ package org.keran.domain.ports.api.loyaltyProgram;
 
 import org.keran.domain.data.loyaltyProgram.LoyaltyProgramDto;
 
+import java.util.Optional;
+
 public interface LoyaltyProgramUpdateServicePort {
-    LoyaltyProgramDto updateLoyaltyProgram(LoyaltyProgramDto loyaltyProgramDto);
+    Optional<LoyaltyProgramDto> updateLoyaltyProgram(LoyaltyProgramDto loyaltyProgramDto);
 }

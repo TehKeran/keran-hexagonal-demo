@@ -4,7 +4,10 @@ import org.keran.infrastructure.data.postgres.loyaltyAccount.LoyaltyAccountTrans
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 @Repository
-public interface loyaltyAccountTransactionHistoryRepository extends JpaRepository<LoyaltyAccountTransactionHistoryPostgres, UUID> {
+public interface LoyaltyAccountTransactionHistoryRepository extends JpaRepository<LoyaltyAccountTransactionHistoryPostgres, UUID> {
+    List<LoyaltyAccountTransactionHistoryPostgres> findAllByLoyaltyAccountId(UUID accountId);
+    boolean existsByLoyaltyAccountId(UUID accountId);
 }

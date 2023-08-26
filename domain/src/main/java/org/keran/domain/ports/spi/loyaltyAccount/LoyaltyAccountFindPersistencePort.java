@@ -4,13 +4,13 @@ import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountTransactionHistoryDto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface LoyaltyAccountFindPersistencePort {
-    LoyaltyAccountDto findLoyaltyAccountById(UUID accountId);
-    LoyaltyAccountDto findLoyaltyAccountByNumber(String accountNumber);
-    LoyaltyAccountTransactionHistoryDto findLoyaltyAccountTransactionHistoryById(UUID transactionHistoryId);
+    Optional<LoyaltyAccountDto> findLoyaltyAccountById(UUID id);
+    Optional<LoyaltyAccountDto> findLoyaltyAccountByNumber(String accountNumber);
+    Optional<LoyaltyAccountTransactionHistoryDto> findLoyaltyAccountTransactionHistoryById(UUID id);
     List<LoyaltyAccountTransactionHistoryDto> getLoyaltyAccountTransactionHistoryByAccountId(UUID accountId);
-    List<LoyaltyAccountTransactionHistoryDto> getLoyaltyAccountTransactionHistoryByAccountNumber(String accountNumber);
     boolean existsLoyaltyAccountById(UUID accountId);
 }

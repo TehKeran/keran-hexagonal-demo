@@ -2,7 +2,9 @@ package org.keran.domain.ports.api.loyaltyCustomer;
 
 import org.keran.domain.data.loyaltyCustomer.LoyaltyCustomerDto;
 
+import java.util.Optional;
+
 public interface LoyaltyCustomerAddServicePort {
-    LoyaltyCustomerDto addLoyaltyCustomer(LoyaltyCustomerDto loyaltyCustomerDto);
+    Optional<LoyaltyCustomerDto> addLoyaltyCustomer(LoyaltyCustomerDto loyaltyCustomerDto);
 
 }

@@ -6,6 +6,7 @@ import org.keran.domain.ports.spi.loyaltyPointBalance.LoyaltyPointBalanceFindPer
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -17,7 +18,7 @@ public class LoyaltyPointBalanceFindService implements LoyaltyPointBalanceFindSe
     }
 
     @Override
-    public LoyaltyPointBalanceDto findLoyaltyPointBalanceById(UUID id) {
+    public Optional<LoyaltyPointBalanceDto> findLoyaltyPointBalanceById(UUID id) {
         return loyaltyPointBalanceFindPersistencePort.findLoyaltyPointBalanceById(id);
     }
 

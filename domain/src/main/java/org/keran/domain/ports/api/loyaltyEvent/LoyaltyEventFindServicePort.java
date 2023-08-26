@@ -4,11 +4,12 @@ import org.keran.domain.data.loyaltyEvent.LoyaltyEventConfigurationDto;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventDto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface LoyaltyEventFindServicePort {
-    LoyaltyEventDto findLoyaltyEventById(UUID id);
-    LoyaltyEventDto findLoyaltyEventByName(String name);
-    LoyaltyEventConfigurationDto findLoyaltyEventConfigurationById(UUID id);
+    Optional<LoyaltyEventDto> findLoyaltyEventById(UUID id);
+    Optional<LoyaltyEventDto> findLoyaltyEventByName(String name);
+    Optional<LoyaltyEventConfigurationDto> findLoyaltyEventConfigurationById(UUID id);
     List<LoyaltyEventConfigurationDto> getLoyaltyEventConfigurationsByProgramId(UUID programId);
 }

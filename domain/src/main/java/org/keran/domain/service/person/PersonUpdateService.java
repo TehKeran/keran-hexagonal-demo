@@ -5,6 +5,8 @@ import org.keran.domain.ports.api.person.PersonUpdateServicePort;
 import org.keran.domain.ports.spi.person.PersonUpdatePersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PersonUpdateService implements PersonUpdateServicePort {
     private final PersonUpdatePersistencePort personUpdatePersistencePort;
@@ -14,27 +16,27 @@ public class PersonUpdateService implements PersonUpdateServicePort {
     }
 
     @Override
-    public PersonDto updatePerson(PersonDto personDto) {
+    public Optional<PersonDto> updatePerson(PersonDto personDto) {
         return personUpdatePersistencePort.updatePerson(personDto);
     }
 
     @Override
-    public AddressDto updateAddress(AddressDto addressDto) {
+    public Optional<AddressDto> updateAddress(AddressDto addressDto) {
         return personUpdatePersistencePort.updateAddress(addressDto);
     }
 
     @Override
-    public ConsentDto updateConsent(ConsentDto consentDto) {
+    public Optional<ConsentDto> updateConsent(ConsentDto consentDto) {
         return personUpdatePersistencePort.updateConsent(consentDto);
     }
 
     @Override
-    public ContactEmailDto updateContactEmail(ContactEmailDto contactEmailDto) {
+    public Optional<ContactEmailDto> updateContactEmail(ContactEmailDto contactEmailDto) {
         return personUpdatePersistencePort.updateContactEmail(contactEmailDto);
     }
 
     @Override
-    public ContactTelephoneDto updateContactTelephone(ContactTelephoneDto contactTelephoneDto) {
+    public Optional<ContactTelephoneDto> updateContactTelephone(ContactTelephoneDto contactTelephoneDto) {
         return personUpdatePersistencePort.updateContactTelephone(contactTelephoneDto);
     }
 }

@@ -5,6 +5,8 @@ import org.keran.domain.ports.api.loyaltyPoint.LoyaltyPointAddServicePort;
 import org.keran.domain.ports.spi.loyaltyPoint.LoyaltyPointAddPersistencePort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoyaltyPointAddService implements LoyaltyPointAddServicePort {
     private final LoyaltyPointAddPersistencePort loyaltyPointAddPersistencePort;
@@ -14,7 +16,7 @@ public class LoyaltyPointAddService implements LoyaltyPointAddServicePort {
     }
 
     @Override
-    public LoyaltyPointDto addLoyaltyPoint(LoyaltyPointDto loyaltyPointDto) {
+    public Optional<LoyaltyPointDto> addLoyaltyPoint(LoyaltyPointDto loyaltyPointDto) {
         return loyaltyPointAddPersistencePort.addLoyaltyPoint(loyaltyPointDto);
     }
 }

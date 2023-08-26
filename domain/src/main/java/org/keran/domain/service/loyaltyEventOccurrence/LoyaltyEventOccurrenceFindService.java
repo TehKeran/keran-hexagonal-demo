@@ -6,6 +6,7 @@ import org.keran.domain.ports.spi.loyaltyEventOccurrence.LoyaltyEventOccurrenceF
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -17,7 +18,7 @@ public class LoyaltyEventOccurrenceFindService implements LoyaltyEventOccurrence
     }
 
     @Override
-    public LoyaltyEventOccurrenceDto findLoyaltyEventOccurrenceById(UUID id) {
+    public Optional<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrenceById(UUID id) {
         return loyaltyEventOccurrenceFindPersistencePort.findLoyaltyEventOccurrenceById(id);
     }
 

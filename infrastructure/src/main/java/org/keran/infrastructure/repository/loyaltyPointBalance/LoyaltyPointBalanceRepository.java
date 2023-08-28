@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface LoyaltyPointBalanceRepository extends JpaRepository<LoyaltyPointBalancePostgres, UUID> {
-    List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountId(UUID loyaltyAccountId);
-    List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountIdAndLoyaltyPointId(UUID loyaltyAccountId, UUID loyaltyPointId);
+    List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountPostgres_Id(UUID loyaltyAccountId);
+    List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountPostgres_IdAndLoyaltyPointPostgres_Id(UUID loyaltyAccountId, UUID loyaltyPointId);
 }

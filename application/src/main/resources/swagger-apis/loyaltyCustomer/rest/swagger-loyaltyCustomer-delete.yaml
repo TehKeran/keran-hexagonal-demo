@@ -1,0 +1,37 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - Loyalty Customer delete API"
+  description: "This API is used to remove loyalty Customer from the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /loyaltyCustomer/{loyaltyCustomerId}:
+    delete:
+      tags:
+        - loyaltyCustomerDeleteController
+      summary: "Delete loyalty Customer by ID."
+      operationId: "deleteLoyaltyCustomerById"
+      description: "Deletes a specific loyalty Customer by its database ID"
+      parameters:
+        - name: "loyaltyCustomerId"
+          in: "path"
+          description: "Existing database ID of a loyalty Customer"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+      responses:
+        "200":
+          description: "OK - loyalty Customer deleted successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyCustomer-api-response-object.yaml#/components/schemas/loyaltyCustomerResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty Customer could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

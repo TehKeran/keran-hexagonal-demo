@@ -21,6 +21,14 @@
 
         <!-- Module-specific dependencies -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
@@ -57,14 +65,6 @@
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -93,8 +93,9 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>6.4.0</version>
                 <executions>
+                    <!-- Loyalty Account -->
                     <execution>
-                        <id>someName-Delete-API</id>
+                        <id>loyaltyAccount-Delete-API</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -103,9 +104,199 @@
                                 <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
                                 <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
                             </typeMappings>
-                            <inputSpec>${openapi-generator-swagger-folder-path}/someName/rest/swagger-someName-delete.yaml</inputSpec>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyAccount/rest/swagger-loyaltyAccount-delete.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>${api-package}.someName</apiPackage>
+                            <apiPackage>${api-package}.loyaltyAccount</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyAccount-Find-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyAccount/rest/swagger-loyaltyAccount-find.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyAccount</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyAccount-Add-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyAccount/rest/swagger-loyaltyAccount-add.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyAccount</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyAccount-Update-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyAccount/rest/swagger-loyaltyAccount-update.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyAccount</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <!-- Loyalty Customer -->
+                    <execution>
+                        <id>loyaltyCustomer-Delete-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyCustomer/rest/swagger-loyaltyCustomer-delete.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyCustomer</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyCustomer-Find-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyCustomer/rest/swagger-loyaltyCustomer-find.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyCustomer</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyCustomer-Add-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyCustomer/rest/swagger-loyaltyCustomer-add.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyCustomer</apiPackage>
+                            <modelPackage>${model-package}</modelPackage>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>
+                                    @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+                                </additionalModelTypeAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dataLibrary>java8</dataLibrary>
+                                <performBeanValidation>true</performBeanValidation>
+                                <useTags>true</useTags>
+                                <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loyaltyCustomer-Update-API</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>RuntimeException=java.lang.RuntimeException</typeMapping>
+                                <typeMapping>HttpStatus=org.springframework.http.HttpStatus</typeMapping>
+                            </typeMappings>
+                            <inputSpec>${openapi-generator-swagger-folder-path}/loyaltyCustomer/rest/swagger-loyaltyCustomer-update.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${api-package}.loyaltyCustomer</apiPackage>
                             <modelPackage>${model-package}</modelPackage>
                             <skipOverwrite>true</skipOverwrite>
                             <configOptions>

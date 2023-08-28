@@ -38,7 +38,7 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
 
     @Override
     public Optional<PersonDto> findPersonByCustomerId(UUID customerId) {
-        Optional<PersonPostgres> personPostgres = personRepository.findByCustomerId(customerId);
+        Optional<PersonPostgres> personPostgres = personRepository.findByLoyaltyCustomerPostgres_Id(customerId);
         return personPostgres.map(PersonMapper.INSTANCE::personPostgresToDto);
     }
 
@@ -50,7 +50,7 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
 
     @Override
     public Optional<AddressDto> findAddressByPersonId(UUID personId) {
-        Optional<AddressPostgres> addressPostgres = addressRepository.findByPersonId(personId);
+        Optional<AddressPostgres> addressPostgres = addressRepository.findByPersonPostgres_Id(personId);
         return addressPostgres.map(AddressMapper.INSTANCE::addressPostgresToDto);
     }
 
@@ -62,7 +62,7 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
 
     @Override
     public Optional<ConsentDto> findConsentByCustomerId(UUID customerId) {
-        Optional<ConsentPostgres> consentPostgres = consentRepository.findByCustomerId(customerId);
+        Optional<ConsentPostgres> consentPostgres = consentRepository.findByLoyaltyCustomerPostgres_Id(customerId);
         return consentPostgres.map(ConsentMapper.INSTANCE::consentPostgresToDto);
     }
 
@@ -74,7 +74,7 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
 
     @Override
     public Optional<ContactEmailDto> findContactEmailByEmail(String email) {
-        Optional<ContactEmailPostgres> contactEmailPostgres = contactEmailRepository.findByEmail(email);
+        Optional<ContactEmailPostgres> contactEmailPostgres = contactEmailRepository.findByEmailAddress(email);
         return contactEmailPostgres.map(ContactEmailMapper.INSTANCE::contactEmailPostgresToDto);
     }
 
@@ -87,7 +87,7 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
     @Override
     public Optional<ContactTelephoneDto> findContactTelephoneByCountryCodeAndNumber(String countryCode, String number) {
         Optional<ContactTelephonePostgres> contactTelephonePostgres =
-                contactTelephoneRepository.findByCountryCodeAndNumber(countryCode, number);
+                contactTelephoneRepository.findByCountryCodeAndTelephoneNumber(countryCode, number);
         return contactTelephonePostgres.map(ContactTelephoneMapper.INSTANCE::contactTelephonePostgresToDto);
     }
 }

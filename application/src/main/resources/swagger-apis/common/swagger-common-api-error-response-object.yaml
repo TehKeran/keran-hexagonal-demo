@@ -1,0 +1,7 @@
+components:
+  schemas:
+    commonApiErrorResponseObject:
+      type: "object"
+      properties:
+        common:
+          $ref: "swagger-common.yaml#/components/schemas/common"

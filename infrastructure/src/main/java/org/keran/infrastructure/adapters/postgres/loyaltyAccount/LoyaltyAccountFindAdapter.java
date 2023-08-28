@@ -51,13 +51,13 @@ public class LoyaltyAccountFindAdapter implements LoyaltyAccountFindPersistenceP
     @Override
     public List<LoyaltyAccountTransactionHistoryDto> getLoyaltyAccountTransactionHistoryByAccountId(UUID accountId) {
         List<LoyaltyAccountTransactionHistoryPostgres> loyaltyAccountTransactionHistoryPostgresList =
-                loyaltyAccountTransactionHistoryRepository.findAllByLoyaltyAccountId(accountId);
+                loyaltyAccountTransactionHistoryRepository.findAllByLoyaltyAccountPostgres_Id(accountId);
         return LoyaltyAccountTransactionHistoryMapper.INSTANCE.loyaltyAccountTransactionHistoryPostgresListToDtoList(
                 loyaltyAccountTransactionHistoryPostgresList);
     }
 
     @Override
     public boolean existsLoyaltyAccountById(UUID accountId) {
-        return loyaltyAccountTransactionHistoryRepository.existsByLoyaltyAccountId(accountId);
+        return loyaltyAccountTransactionHistoryRepository.existsByLoyaltyAccountPostgres_Id(accountId);
     }
 }

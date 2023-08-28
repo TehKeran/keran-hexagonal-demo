@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface LoyaltyCustomerFindServicePort {
     Optional<LoyaltyCustomerDto> findLoyaltyCustomerById(UUID id);
     Optional<LoyaltyCustomerDto> findLoyaltyCustomerByCustomerNumber(String customerNumber);
+    Boolean existsById(UUID id);
+    Boolean existsByCustomerNumber(String customerNumber);
 }

@@ -1,13 +1,16 @@
 components:
   schemas:
-    someNameApiObject:
+    loyaltyCustomerApiObject:
       type: "object"
       properties:
         id:
           type: "string"
           format: "uuid"
-        # new fields go here:
-
+        customerNumber:
+          type: "string"
+        registrationDate:
+          type: "string"
+          format: "date"
         lastModificationOn:
           type: "string"
           format: "date"

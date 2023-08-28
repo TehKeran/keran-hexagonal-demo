@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface LoyaltyCardRepository extends JpaRepository<LoyaltyCardPostgres, UUID> {
     Optional<LoyaltyCardPostgres> findByCardNumber(String cardNumber);
-    List<LoyaltyCardPostgres> findAllByLoyaltyCustomerId(UUID loyaltyCustomerId);
+    List<LoyaltyCardPostgres> findAllByLoyaltyCustomerPostgres_Id(UUID loyaltyCustomerId);
 }

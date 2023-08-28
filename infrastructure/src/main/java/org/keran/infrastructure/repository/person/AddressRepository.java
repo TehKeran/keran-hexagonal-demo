@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface AddressRepository extends JpaRepository<AddressPostgres, UUID> {
-    Optional<AddressPostgres> findByPersonId(UUID personID);
+    Optional<AddressPostgres> findByPersonPostgres_Id(UUID personID);
 }

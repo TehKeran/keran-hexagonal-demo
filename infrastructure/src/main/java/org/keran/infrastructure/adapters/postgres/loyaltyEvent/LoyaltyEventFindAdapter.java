@@ -49,7 +49,7 @@ public class LoyaltyEventFindAdapter implements LoyaltyEventFindPersistencePort 
     @Override
     public List<LoyaltyEventConfigurationDto> getLoyaltyEventConfigurationsByProgramId(UUID programId) {
         List<LoyaltyEventConfigurationPostgres> loyaltyEventConfigurationPostgres =
-                loyaltyEventConfigurationRepository.findAllByLoyaltyProgramId(programId);
+                loyaltyEventConfigurationRepository.findAllByLoyaltyProgramPostgres_Id(programId);
         return LoyaltyEventConfigurationMapper.INSTANCE.
                 loyaltyEventConfigurationPostgresListToDtoList(loyaltyEventConfigurationPostgres);
     }

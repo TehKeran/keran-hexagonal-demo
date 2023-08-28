@@ -9,5 +9,6 @@ import java.util.UUID;
 @Repository
 public interface LoyaltyCustomerRepository extends JpaRepository<LoyaltyCustomerPostgres, UUID> {
     void deleteByCustomerNumber(String customerNumber);
+    Boolean existsByCustomerNumber(String customerNumber);
     Optional<LoyaltyCustomerPostgres> findByCustomerNumber(String customerNumber);
 }

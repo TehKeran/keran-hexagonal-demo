@@ -8,5 +8,5 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface ContactEmailRepository extends JpaRepository<ContactEmailPostgres, UUID> {
-    Optional<ContactEmailPostgres> findByEmail(String email);
+    Optional<ContactEmailPostgres> findByEmailAddress(String email);
 }

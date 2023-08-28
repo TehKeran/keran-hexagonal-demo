@@ -8,5 +8,5 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface ContactTelephoneRepository extends JpaRepository<ContactTelephonePostgres, UUID> {
-    Optional<ContactTelephonePostgres> findByCountryCodeAndNumber(String countryCode, String telephoneNumber);
+    Optional<ContactTelephonePostgres> findByCountryCodeAndTelephoneNumber(String countryCode, String telephoneNumber);
 }

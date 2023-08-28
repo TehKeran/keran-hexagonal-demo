@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface LoyaltyEventOccurrenceRepository extends JpaRepository<LoyaltyEventOccurrencePostgres, UUID> {
-    List<LoyaltyEventOccurrencePostgres> findAllByLoyaltyAccountId(UUID loyaltyAccountId);
-    List<LoyaltyEventOccurrencePostgres> findAllByLoyaltyEventId(UUID loyaltyEventId);
+    List<LoyaltyEventOccurrencePostgres> findAllByLoyaltyAccountPostgres_Id(UUID loyaltyAccountId);
+    List<LoyaltyEventOccurrencePostgres> findAllByLoyaltyEventPostgres_Id(UUID loyaltyEventId);
 }

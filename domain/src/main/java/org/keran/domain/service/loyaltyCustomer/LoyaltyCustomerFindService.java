@@ -25,4 +25,14 @@ public class LoyaltyCustomerFindService implements LoyaltyCustomerFindServicePor
     public Optional<LoyaltyCustomerDto> findLoyaltyCustomerByCustomerNumber(String customerNumber) {
         return loyaltyCustomerFindPersistencePort.findLoyaltyCustomerByCustomerNumber(customerNumber);
     }
+
+    @Override
+    public Boolean existsById(UUID id) {
+        return loyaltyCustomerFindPersistencePort.existsById(id);
+    }
+
+    @Override
+    public Boolean existsByCustomerNumber(String customerNumber) {
+        return loyaltyCustomerFindPersistencePort.existsByCustomerNumber(customerNumber);
+    }
 }

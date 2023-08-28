@@ -8,5 +8,5 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface PersonRepository extends JpaRepository<PersonPostgres, UUID> {
-    Optional<PersonPostgres> findByCustomerId(UUID id);
+    Optional<PersonPostgres> findByLoyaltyCustomerPostgres_Id(UUID id);
 }

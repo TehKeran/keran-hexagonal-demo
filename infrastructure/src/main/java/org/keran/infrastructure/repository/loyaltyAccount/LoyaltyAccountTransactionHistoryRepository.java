@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface LoyaltyAccountTransactionHistoryRepository extends JpaRepository<LoyaltyAccountTransactionHistoryPostgres, UUID> {
-    List<LoyaltyAccountTransactionHistoryPostgres> findAllByLoyaltyAccountId(UUID accountId);
-    boolean existsByLoyaltyAccountId(UUID accountId);
+    List<LoyaltyAccountTransactionHistoryPostgres> findAllByLoyaltyAccountPostgres_Id(UUID accountId);
+    boolean existsByLoyaltyAccountPostgres_Id(UUID accountId);
 }

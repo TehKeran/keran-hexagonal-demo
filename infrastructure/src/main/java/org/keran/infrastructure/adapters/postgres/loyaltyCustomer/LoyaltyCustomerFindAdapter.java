@@ -31,4 +31,14 @@ public class LoyaltyCustomerFindAdapter implements LoyaltyCustomerFindPersistenc
         Optional<LoyaltyCustomerPostgres> loyaltyCustomerPostgres = loyaltyCustomerRepository.findByCustomerNumber(customerNumber);
         return loyaltyCustomerPostgres.map(LoyaltyCustomerMapper.INSTANCE::loyaltyCustomerPostgresToDto);
     }
+
+    @Override
+    public Boolean existsById(UUID id) {
+        return loyaltyCustomerRepository.existsById(id);
+    }
+
+    @Override
+    public Boolean existsByCustomerNumber(String customerNumber) {
+        return loyaltyCustomerRepository.existsByCustomerNumber(customerNumber);
+    }
 }

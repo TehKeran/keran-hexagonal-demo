@@ -19,7 +19,7 @@ public class LoyaltyPointBalancePostgres extends AbstractPostgresEntity {
     @JoinColumn(name = "loyalty_account_id", referencedColumnName = "id", nullable = false)
     private LoyaltyAccountPostgres loyaltyAccountPostgres;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_point_id", referencedColumnName = "id", nullable = false)
     private LoyaltyPointPostgres loyaltyPointPostgres;
 

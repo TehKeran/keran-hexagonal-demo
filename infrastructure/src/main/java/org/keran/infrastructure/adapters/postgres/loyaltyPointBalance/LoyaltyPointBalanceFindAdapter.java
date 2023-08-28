@@ -31,14 +31,14 @@ public class LoyaltyPointBalanceFindAdapter implements LoyaltyPointBalanceFindPe
     @Override
     public List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountId(UUID accountId) {
         List<LoyaltyPointBalancePostgres> loyaltyPointBalancePostgresList =
-                loyaltyPointBalanceRepository.findAllByLoyaltyAccountId(accountId);
+                loyaltyPointBalanceRepository.findAllByLoyaltyAccountPostgres_Id(accountId);
         return LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalancePostgresListToDtoList(loyaltyPointBalancePostgresList);
     }
 
     @Override
     public List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountIdAndLoyaltyPointId(UUID accountId, UUID loyaltyPointId) {
         List<LoyaltyPointBalancePostgres> loyaltyPointBalancePostgresList =
-                loyaltyPointBalanceRepository.findAllByLoyaltyAccountIdAndLoyaltyPointId(accountId, loyaltyPointId);
+                loyaltyPointBalanceRepository.findAllByLoyaltyAccountPostgres_IdAndLoyaltyPointPostgres_Id(accountId, loyaltyPointId);
         return LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalancePostgresListToDtoList(loyaltyPointBalancePostgresList);
     }
 }

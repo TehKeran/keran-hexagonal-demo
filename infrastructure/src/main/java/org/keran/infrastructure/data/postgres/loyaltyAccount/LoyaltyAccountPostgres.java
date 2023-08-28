@@ -22,11 +22,11 @@ public class LoyaltyAccountPostgres extends AbstractPostgresEntity {
     @JoinColumn(name = "loyalty_customer_id", referencedColumnName = "id", nullable = false)
     private LoyaltyCustomerPostgres loyaltyCustomerPostgres;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_program_id",referencedColumnName = "id",  nullable = false)
     private LoyaltyProgramPostgres loyaltyProgramPostgres;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_account_type_id", referencedColumnName = "id", nullable = false)
     private DefLoyaltyAccountTypePostgres loyaltyAccountType;
 

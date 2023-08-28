@@ -9,6 +9,9 @@ components:
           type: "string"
         wasSuccess:
           type: "boolean"
+        timestamp:
+          type: "string"
+          format: "date"
         exception:
           type: "RuntimeException"
           required: false

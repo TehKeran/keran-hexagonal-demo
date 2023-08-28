@@ -35,7 +35,7 @@ public class LoyaltyCardFindAdapter implements LoyaltyCardFindPersistencePort {
 
     @Override
     public List<LoyaltyCardDto> getLoyaltyCardsByCustomerId(UUID customerId) {
-        List<LoyaltyCardPostgres> loyaltyCardPostgresList = loyaltyCardRepository.findAllByLoyaltyCustomerId(customerId);
+        List<LoyaltyCardPostgres> loyaltyCardPostgresList = loyaltyCardRepository.findAllByLoyaltyCustomerPostgres_Id(customerId);
         return LoyaltyCardMapper.INSTANCE.loyaltyCardPostgresListToDtoList(loyaltyCardPostgresList);
     }
 }

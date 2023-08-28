@@ -1,0 +1,41 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - add API"
+  description: "This API is used to add loyalty accounts to the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /loyaltyAccount/{loyaltyCustomerId}:
+    post:
+      tags:
+        - LoyaltyAccountAddController
+      summary: "Add loyalty account."
+      operationId: "addLoyaltyAccountById"
+      description: "Adds a specific loyalty Account to a specific loyalty customer"
+      parameters:
+        - name: "loyaltyCustomerId"
+          in: "path"
+          description: "Existing database ID of a loyalty customer"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+      requestBody:
+        content:
+          application/json:
+            $ref: '../model/swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject'
+      responses:
+        "200":
+          description: "OK - loyalty account created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty customer could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'

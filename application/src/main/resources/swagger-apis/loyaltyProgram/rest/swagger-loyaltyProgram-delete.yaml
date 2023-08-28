@@ -1,0 +1,37 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - delete API"
+  description: "This API is used to remove loyalty accounts from the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /loyaltyAccount/{loyaltyAccountId}:
+    delete:
+      tags:
+        - loyaltyAccountDeleteController
+      summary: "Delete loyalty account by ID."
+      operationId: "deleteLoyaltyAccountById"
+      description: "Deletes a specific loyalty Account by its database ID"
+      parameters:
+        - name: "loyaltyAccountId"
+          in: "path"
+          description: "Existing database ID of a loyalty account"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+      responses:
+        "200":
+          description: "OK - loyalty account deleted successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty account could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'

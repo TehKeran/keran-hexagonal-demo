@@ -5,7 +5,7 @@ components:
       properties:
         common:
           $ref: "../../common/swagger-common.yaml#/components/schemas/common"
-        someNameApiObjects:
+        loyaltyAccountApiObjects:
           type: "array"
           items:
-            $ref: "swagger-someName.yaml#/components/schemas/someNameApiObject"
+            $ref: "swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject"

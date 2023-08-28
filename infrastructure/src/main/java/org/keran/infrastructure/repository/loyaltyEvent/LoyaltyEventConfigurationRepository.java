@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface LoyaltyEventConfigurationRepository extends JpaRepository<LoyaltyEventConfigurationPostgres, UUID> {
-    List<LoyaltyEventConfigurationPostgres> findAllByLoyaltyProgramId(UUID loyaltyProgramId);
+    List<LoyaltyEventConfigurationPostgres> findAllByLoyaltyProgramPostgres_Id(UUID loyaltyProgramId);
 }

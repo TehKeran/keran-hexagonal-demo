@@ -37,4 +37,24 @@ public class LoyaltyEventFindService implements LoyaltyEventFindServicePort {
     public List<LoyaltyEventConfigurationDto> getLoyaltyEventConfigurationsByProgramId(UUID programId) {
         return loyaltyEventFindPersistencePort.getLoyaltyEventConfigurationsByProgramId(programId);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyEventFindPersistencePort.existsById(id);
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return loyaltyEventFindPersistencePort.existsByName(name);
+    }
+
+    @Override
+    public boolean existsConfigurationByEventIdAndProgramId(UUID loyaltyEventId, UUID loyaltyProgramID) {
+        return loyaltyEventFindPersistencePort.existsConfigurationByEventIdAndProgramId(loyaltyEventId, loyaltyProgramID);
+    }
+
+    @Override
+    public boolean existsConfigurationById(UUID id) {
+        return loyaltyEventFindPersistencePort.existsConfigurationById(id);
+    }
 }

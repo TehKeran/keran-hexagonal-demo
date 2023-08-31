@@ -31,4 +31,9 @@ public class LoyaltyPointBalanceFindService implements LoyaltyPointBalanceFindSe
     public List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountIdAndLoyaltyPointId(UUID accountId, UUID loyaltyPointId) {
         return loyaltyPointBalanceFindPersistencePort.findLoyaltyPointBalancesByAccountIdAndLoyaltyPointId(accountId, loyaltyPointId);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyPointBalanceFindPersistencePort.existsById(id);
+    }
 }

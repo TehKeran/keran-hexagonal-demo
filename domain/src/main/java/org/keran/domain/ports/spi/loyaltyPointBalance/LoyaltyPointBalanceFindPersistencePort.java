@@ -10,4 +10,5 @@ public interface LoyaltyPointBalanceFindPersistencePort {
     Optional<LoyaltyPointBalanceDto> findLoyaltyPointBalanceById(UUID id);
     List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountId(UUID accountId);
     List<LoyaltyPointBalanceDto> findLoyaltyPointBalancesByAccountIdAndLoyaltyPointId(UUID accountId, UUID loyaltyPointId);
+    boolean existsById(UUID id);
 }

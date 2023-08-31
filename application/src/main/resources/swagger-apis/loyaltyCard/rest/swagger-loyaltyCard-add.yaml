@@ -1,18 +1,18 @@
 openapi: "3.0.3"
 info:
-  title: "Keran Fidelity System - add API"
-  description: "This API is used to add loyalty accounts to the database"
+  title: "Keran Fidelity System - Loyalty Card add API"
+  description: "This API is used to add loyalty Cards to the database"
   version: "1.0.0"
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyCustomerId}:
+  /api/v1/loyaltyCard/{loyaltyCustomerId}:
     post:
       tags:
-        - LoyaltyAccountAddController
-      summary: "Add loyalty account."
-      operationId: "addLoyaltyAccountById"
-      description: "Adds a specific loyalty Account to a specific loyalty customer"
+        - LoyaltyCardAddController
+      summary: "Add loyalty Card."
+      operationId: "addLoyaltyCardById"
+      description: "Adds a specific loyalty Card to a specific loyalty customer"
       parameters:
         - name: "loyaltyCustomerId"
           in: "path"
@@ -25,17 +25,18 @@ paths:
       requestBody:
         content:
           application/json:
-            $ref: '../model/swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject'
+            schema:
+              $ref: '../model/swagger-loyaltyCard.yaml#/components/schemas/loyaltyCardApiObject'
       responses:
         "200":
-          description: "OK - loyalty account created successfully"
+          description: "OK - loyalty Card created successfully"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../model/swagger-loyaltyCard-api-response-object.yaml#/components/schemas/loyaltyCardResponseObject'
         "404":
           description: "NOT FOUND - loyalty customer could not be found"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

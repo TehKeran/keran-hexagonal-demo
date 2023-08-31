@@ -1,6 +1,6 @@
 components:
   schemas:
-    loyaltyAccountApiObject:
+    personApiObject:
       type: "object"
       properties:
         id:
@@ -9,27 +9,19 @@ components:
         loyaltyCustomerId:
           type: "string"
           format: "uuid"
-        loyaltyProgramId:
+        salutation:
           type: "string"
-          format: "uuid"
-        loyaltyAccountType:
+        firstName:
           type: "string"
-          enum:
-            - "L1_STANDARD"
-            - "L2_PREMIUM"
-            - "L3_VIP"
-        accountNumber:
+        middleName:
           type: "string"
-        externalAccountNumber:
+        firstLastName:
           type: "string"
-          required: false
-        startDate:
+        secondLastName:
+          type: "string"
+        dateOfBirth:
           type: "string"
           format: "date"
-        closeDate:
-          type: "string"
-          format: "date"
-          required: false
         lastModificationOn:
           type: "string"
           format: "date"

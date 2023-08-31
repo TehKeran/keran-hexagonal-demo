@@ -20,4 +20,9 @@ public class LoyaltyPointBalanceDeleteAdapter implements LoyaltyPointBalanceDele
     public void deleteLoyaltyPointBalanceById(UUID id) {
         loyaltyPointBalanceRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAllLoyaltyPointBalanceByLoyaltyAccountId(UUID loyaltyAccountId) {
+        loyaltyPointBalanceRepository.deleteAllLoyaltyPointBalanceByLoyaltyAccountPostgres_Id(loyaltyAccountId);
+    }
 }

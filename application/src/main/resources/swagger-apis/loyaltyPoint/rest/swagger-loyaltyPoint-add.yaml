@@ -1,0 +1,33 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - Loyalty Point add API"
+  description: "This API is used to add loyalty Points to the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /api/v1/loyaltyPoint:
+    post:
+      tags:
+        - LoyaltyPointAddController
+      summary: "Add loyalty Point."
+      operationId: "addLoyaltyPointById"
+      description: "Adds a specific loyalty Point to the database"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../model/swagger-loyaltyPoint.yaml#/components/schemas/loyaltyPointApiObject'
+      responses:
+        "200":
+          description: "OK - loyalty Point created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyPoint-api-response-object.yaml#/components/schemas/loyaltyPointResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty customer could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

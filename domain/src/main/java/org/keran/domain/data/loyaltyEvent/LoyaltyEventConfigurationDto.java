@@ -11,5 +11,5 @@ public class LoyaltyEventConfigurationDto extends AbstractEntity {
 
     private LoyaltyProgramDto loyaltyProgramDto;
     private LoyaltyEventDto loyaltyEventDto;
-    private double loyaltyPointsToAward;
+    private int loyaltyPointsToAward;
 }

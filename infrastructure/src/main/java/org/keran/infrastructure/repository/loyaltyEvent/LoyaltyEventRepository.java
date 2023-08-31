@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface LoyaltyEventRepository extends JpaRepository<LoyaltyEventPostgres, UUID> {
     Optional<LoyaltyEventPostgres> findByName(String name);
+    boolean existsByName(String name);
 }

@@ -31,4 +31,9 @@ public class LoyaltyProgramFindAdapter implements LoyaltyProgramFindPersistenceP
         Optional<LoyaltyProgramPostgres> loyaltyProgramPostgres = loyaltyProgramRepository.findByName(name);
         return loyaltyProgramPostgres.map(LoyaltyProgramMapper.INSTANCE::loyaltyProgramPostgresToDto);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyProgramRepository.existsById(id);
+    }
 }

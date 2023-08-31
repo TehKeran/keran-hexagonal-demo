@@ -1,0 +1,37 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - Loyalty Point delete API"
+  description: "This API is used to remove loyalty Points from the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /api/v1/loyaltyPoint/{loyaltyPointId}:
+    delete:
+      tags:
+        - loyaltyPointDeleteController
+      summary: "Delete loyalty Point by ID."
+      operationId: "deleteLoyaltyPointById"
+      description: "Deletes a specific loyalty Point by its database ID"
+      parameters:
+        - name: "loyaltyPointId"
+          in: "path"
+          description: "Existing database ID of a loyalty Point"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+      responses:
+        "200":
+          description: "OK - loyalty Point deleted successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyPoint-api-response-object.yaml#/components/schemas/loyaltyPointResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty Point could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

@@ -28,6 +28,15 @@ public class PersonDeleteAdapter implements PersonDeletePersistencePort {
 
     @Override
     public void deletePersonById(UUID id) {
+        // Delete addresses
+        addressRepository.deleteByPersonPostgres_Id(id);
+
+        // Delete telephones
+        contactTelephoneRepository.deleteByPersonPostgres_Id(id);
+
+        // Delete emails
+        contactEmailRepository.deleteByPersonPostgres_Id(id);
+
         personRepository.deleteById(id);
     }
 
@@ -49,5 +58,25 @@ public class PersonDeleteAdapter implements PersonDeletePersistencePort {
     @Override
     public void deleteContactTelephoneById(UUID id) {
         contactTelephoneRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAddressByPersonId(UUID personId) {
+        addressRepository.deleteByPersonPostgres_Id(personId);
+    }
+
+    @Override
+    public void deleteConsentByLoyaltyCustomerId(UUID loyaltyCustomerId) {
+        consentRepository.deleteByLoyaltyCustomerPostgres_Id(loyaltyCustomerId);
+    }
+
+    @Override
+    public void deleteContactEmailByPersonId(UUID personId) {
+        contactEmailRepository.deleteByPersonPostgres_Id(personId);
+    }
+
+    @Override
+    public void deleteContactTelephoneByPersonId(UUID personId) {
+        contactTelephoneRepository.deleteByPersonPostgres_Id(personId);
     }
 }

@@ -4,7 +4,7 @@ import com.querydsl.core.annotations.QueryEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.keran.infrastructure.data.postgres.AbstractPostgresEntity;
-import org.keran.infrastructure.data.postgres.loyaltyAccount.LoyaltyAccountPostgres;
+import org.keran.infrastructure.data.postgres.loyaltyCustomer.LoyaltyCustomerPostgres;
 import org.keran.infrastructure.data.postgres.loyaltyEvent.LoyaltyEventPostgres;
 
 import javax.persistence.*;
@@ -17,8 +17,8 @@ import java.util.Date;
 @Table(name = "loyalty_event_occurrence")
 public class LoyaltyEventOccurrencePostgres extends AbstractPostgresEntity {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "loyalty_account_id", referencedColumnName = "id", nullable = false)
-    private LoyaltyAccountPostgres loyaltyAccountPostgres;
+    @JoinColumn(name = "loyalty_customer_id", referencedColumnName = "id", nullable = false)
+    private LoyaltyCustomerPostgres loyaltyCustomerPostgres;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_event_id", referencedColumnName = "id", nullable = false)

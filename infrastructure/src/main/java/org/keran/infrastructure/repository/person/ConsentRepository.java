@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface ConsentRepository extends JpaRepository<ConsentPostgres, UUID> {
     Optional<ConsentPostgres> findByLoyaltyCustomerPostgres_Id(UUID customerId);
+    void deleteByLoyaltyCustomerPostgres_Id(UUID loyaltyCustomerId);
 }

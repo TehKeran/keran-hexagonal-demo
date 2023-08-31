@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyAccountId}:
+  /api/v1/loyaltyAccount/{loyaltyAccountId}:
     get:
       tags:
         - LoyaltyAccountFindController
@@ -22,11 +22,6 @@ paths:
             type: "string"
             format: "uuid"
             example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '../model/swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject'
       responses:
         "200":
           description: "OK - loyalty account found successfully"
@@ -39,4 +34,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

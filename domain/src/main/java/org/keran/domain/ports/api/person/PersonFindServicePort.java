@@ -16,5 +16,10 @@ public interface PersonFindServicePort {
     Optional<ContactEmailDto> findContactEmailByEmail(String email);
     Optional<ContactTelephoneDto> findContactTelephoneById(UUID id);
     Optional<ContactTelephoneDto> findContactTelephoneByCountryCodeAndNumber(String countryCode, String number);
+    boolean existsPersonById(UUID id);
+    boolean existsAddressById(UUID id);
+    boolean existsConsentById(UUID id);
+    boolean existsContactEmailById(UUID id);
+    boolean existsContactTelephoneById(UUID id);
 
 }

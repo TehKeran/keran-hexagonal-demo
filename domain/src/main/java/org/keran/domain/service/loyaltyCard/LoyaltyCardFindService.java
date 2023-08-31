@@ -30,4 +30,14 @@ public class LoyaltyCardFindService implements LoyaltyCardFindServicePort {
     public List<LoyaltyCardDto> getLoyaltyCardsByCustomerId(UUID customerId) {
         return loyaltyCardFindPersistencePort.getLoyaltyCardsByCustomerId(customerId);
     }
+
+    @Override
+    public boolean existsByLoyaltyCardId(UUID id) {
+        return loyaltyCardFindPersistencePort.existsByLoyaltyCardId(id);
+    }
+
+    @Override
+    public boolean existsByLoyaltyCardNumber(String cardNumber) {
+        return loyaltyCardFindPersistencePort.existsByLoyaltyCardNumber(cardNumber);
+    }
 }

@@ -25,4 +25,9 @@ public class LoyaltyProgramFindService implements LoyaltyProgramFindServicePort 
     public Optional<LoyaltyProgramDto> findLoyaltyProgramByName(String name) {
         return loyaltyProgramFindPersistencePort.findLoyaltyProgramByName(name);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyProgramFindPersistencePort.existsById(id);
+    }
 }

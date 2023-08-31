@@ -1,11 +1,11 @@
 components:
   schemas:
-    someNameResponseObject:
+    personResponseObject:
       type: "object"
       properties:
         common:
           $ref: "../../common/swagger-common.yaml#/components/schemas/common"
-        loyaltyAccountApiObjects:
+        personApiObjects:
           type: "array"
           items:
-            $ref: "swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject"
+            $ref: "swagger-person.yaml#/components/schemas/personApiObject"

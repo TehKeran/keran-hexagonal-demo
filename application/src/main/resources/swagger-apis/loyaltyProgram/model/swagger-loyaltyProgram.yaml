@@ -1,32 +1,19 @@
 components:
   schemas:
-    loyaltyAccountApiObject:
+    loyaltyProgramApiObject:
       type: "object"
       properties:
         id:
           type: "string"
           format: "uuid"
-        loyaltyCustomerId:
+        name:
           type: "string"
-          format: "uuid"
-        loyaltyProgramId:
+        description:
           type: "string"
-          format: "uuid"
-        loyaltyAccountType:
-          type: "string"
-          enum:
-            - "L1_STANDARD"
-            - "L2_PREMIUM"
-            - "L3_VIP"
-        accountNumber:
-          type: "string"
-        externalAccountNumber:
-          type: "string"
-          required: false
         startDate:
           type: "string"
           format: "date"
-        closeDate:
+        endDate:
           type: "string"
           format: "date"
           required: false

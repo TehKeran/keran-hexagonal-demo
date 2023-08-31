@@ -20,4 +20,9 @@ public class LoyaltyCardDeleteAdapter implements LoyaltyCardDeletePersistencePor
     public void deleteLoyaltyCardById(UUID loyaltyCardId) {
         loyaltyCardRepository.deleteById(loyaltyCardId);
     }
+
+    @Override
+    public void deleteAllLoyaltyCardByLoyaltyCustomerId(UUID loyaltyCustomerId) {
+        loyaltyCardRepository.deleteAllLoyaltyCardsByLoyaltyCustomerPostgres_Id(loyaltyCustomerId);
+    }
 }

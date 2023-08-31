@@ -1,7 +1,7 @@
 package org.keran.application.exceptionHandler;
 
 import org.keran.application.exception.loyaltyCustomer.LoyaltyCustomerNumberIsNullException;
-import org.keran.application.utility.ResponseEntityFactory;
+import org.keran.application.utility.common.ResponseEntityFactory;
 import org.keran.domain.exception.loyaltyCustomer.LoyaltyCustomerNumberAlreadyExistsException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

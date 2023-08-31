@@ -1,0 +1,17 @@
+components:
+  schemas:
+    loyaltyPointApiObject:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        name:
+          type: "string"
+        imageUrl:
+          type: "string"
+        lastModificationOn:
+          type: "string"
+          format: "date"
+        lastModificationBy:
+          type: "string"

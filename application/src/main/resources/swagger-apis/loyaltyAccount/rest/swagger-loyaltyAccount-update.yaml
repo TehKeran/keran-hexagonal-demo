@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyAccountId}:
+  /api/v1/loyaltyAccount/{loyaltyAccountId}:
     put:
       tags:
         - LoyaltyAccountUpdateController
@@ -39,4 +39,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

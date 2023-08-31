@@ -25,4 +25,10 @@ public class LoyaltyPointFindService implements LoyaltyPointFindServicePort {
     public Optional<LoyaltyPointDto> findLoyaltyPointByName(String name) {
         return loyaltyPointFindPersistencePort.findLoyaltyPointByName(name);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyPointFindPersistencePort.existsById(id);
+    }
+
 }

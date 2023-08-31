@@ -90,4 +90,29 @@ public class PersonFindAdapter implements PersonFindPersistencePort {
                 contactTelephoneRepository.findByCountryCodeAndTelephoneNumber(countryCode, number);
         return contactTelephonePostgres.map(ContactTelephoneMapper.INSTANCE::contactTelephonePostgresToDto);
     }
+
+    @Override
+    public boolean existsPersonById(UUID id) {
+        return personRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsAddressById(UUID id) {
+        return addressRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsConsentById(UUID id) {
+        return consentRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsContactEmailById(UUID id) {
+        return contactEmailRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsContactTelephoneById(UUID id) {
+        return contactTelephoneRepository.existsById(id);
+    }
 }

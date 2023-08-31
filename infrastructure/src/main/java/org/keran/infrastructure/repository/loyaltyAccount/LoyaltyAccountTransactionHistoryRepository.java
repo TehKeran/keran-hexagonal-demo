@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface LoyaltyAccountTransactionHistoryRepository extends JpaRepository<LoyaltyAccountTransactionHistoryPostgres, UUID> {
     List<LoyaltyAccountTransactionHistoryPostgres> findAllByLoyaltyAccountPostgres_Id(UUID accountId);
     boolean existsByLoyaltyAccountPostgres_Id(UUID accountId);
+    void deleteAllLoyaltyAccountTransactionHistoryByLoyaltyAccountPostgres_Id(UUID loyaltyAccountId);
 }

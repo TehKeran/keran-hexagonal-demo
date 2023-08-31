@@ -1,0 +1,21 @@
+components:
+  schemas:
+    loyaltyEventConfigurationApiObject:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        loyaltyProgramId:
+          type: "string"
+          format: "uuid"
+        loyaltyEventId:
+          type: "string"
+          format: "uuid"
+        loyaltyPointsToAward:
+          type: "int"
+        lastModificationOn:
+          type: "string"
+          format: "date"
+        lastModificationBy:
+          type: "string"

@@ -1,22 +1,22 @@
 openapi: "3.0.3"
 info:
-  title: "Keran Fidelity System - delete API"
-  description: "This API is used to remove loyalty accounts from the database"
+  title: "Keran Fidelity System - Loyalty Card delete API"
+  description: "This API is used to remove loyalty Cards from the database"
   version: "1.0.0"
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyAccountId}:
+  /api/v1/loyaltyCard/{loyaltyCardId}:
     delete:
       tags:
-        - loyaltyAccountDeleteController
-      summary: "Delete loyalty account by ID."
-      operationId: "deleteLoyaltyAccountById"
-      description: "Deletes a specific loyalty Account by its database ID"
+        - loyaltyCardDeleteController
+      summary: "Delete loyalty Card by ID."
+      operationId: "deleteLoyaltyCardById"
+      description: "Deletes a specific loyalty Card by its database ID"
       parameters:
-        - name: "loyaltyAccountId"
+        - name: "loyaltyCardId"
           in: "path"
-          description: "Existing database ID of a loyalty account"
+          description: "Existing database ID of a loyalty Card"
           required: true
           schema:
             type: "string"
@@ -24,14 +24,14 @@ paths:
             example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
       responses:
         "200":
-          description: "OK - loyalty account deleted successfully"
+          description: "OK - loyalty Card deleted successfully"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../model/swagger-loyaltyCard-api-response-object.yaml#/components/schemas/loyaltyCardResponseObject'
         "404":
-          description: "NOT FOUND - loyalty account could not be found"
+          description: "NOT FOUND - loyalty Card could not be found"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

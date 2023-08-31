@@ -1,6 +1,6 @@
 components:
   schemas:
-    loyaltyAccountApiObject:
+    loyaltyEventOccurrenceApiObject:
       type: "object"
       properties:
         id:
@@ -9,27 +9,16 @@ components:
         loyaltyCustomerId:
           type: "string"
           format: "uuid"
-        loyaltyProgramId:
+        loyaltyEventId:
           type: "string"
           format: "uuid"
-        loyaltyAccountType:
-          type: "string"
-          enum:
-            - "L1_STANDARD"
-            - "L2_PREMIUM"
-            - "L3_VIP"
-        accountNumber:
-          type: "string"
-        externalAccountNumber:
-          type: "string"
-          required: false
-        startDate:
+        dateOfOccurrence:
           type: "string"
           format: "date"
-        closeDate:
+        quantityOfOccurrence:
+          type: "int"
+        source:
           type: "string"
-          format: "date"
-          required: false
         lastModificationOn:
           type: "string"
           format: "date"

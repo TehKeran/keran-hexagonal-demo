@@ -6,14 +6,13 @@ import lombok.EqualsAndHashCode;
 import org.keran.infrastructure.data.kafka.AbstractKafkaEntity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoyaltyEventOccurrenceKafka extends AbstractKafkaEntity {
-    private UUID loyaltyAccountId;
+    private UUID loyaltyCustomerId;
     private UUID loyaltyEventId;
     private LocalDateTime dateOfOccurrence;
     private int quantityOfOccurrence;

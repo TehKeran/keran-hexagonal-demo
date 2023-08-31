@@ -65,4 +65,29 @@ public class PersonFindService implements PersonFindServicePort {
     public Optional<ContactTelephoneDto> findContactTelephoneByCountryCodeAndNumber(String countryCode, String number) {
         return personFindPersistencePort.findContactTelephoneByCountryCodeAndNumber(countryCode, number);
     }
+
+    @Override
+    public boolean existsPersonById(UUID id) {
+        return personFindPersistencePort.existsPersonById(id);
+    }
+
+    @Override
+    public boolean existsAddressById(UUID id) {
+        return personFindPersistencePort.existsAddressById(id);
+    }
+
+    @Override
+    public boolean existsConsentById(UUID id) {
+        return personFindPersistencePort.existsConsentById(id);
+    }
+
+    @Override
+    public boolean existsContactEmailById(UUID id) {
+        return personFindPersistencePort.existsContactEmailById(id);
+    }
+
+    @Override
+    public boolean existsContactTelephoneById(UUID id) {
+        return personFindPersistencePort.existsContactTelephoneById(id);
+    }
 }

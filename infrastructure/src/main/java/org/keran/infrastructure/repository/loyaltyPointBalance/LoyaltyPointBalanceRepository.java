@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface LoyaltyPointBalanceRepository extends JpaRepository<LoyaltyPointBalancePostgres, UUID> {
     List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountPostgres_Id(UUID loyaltyAccountId);
     List<LoyaltyPointBalancePostgres> findAllByLoyaltyAccountPostgres_IdAndLoyaltyPointPostgres_Id(UUID loyaltyAccountId, UUID loyaltyPointId);
+    void deleteAllLoyaltyPointBalanceByLoyaltyAccountPostgres_Id(UUID loyaltyAccountId);
 }

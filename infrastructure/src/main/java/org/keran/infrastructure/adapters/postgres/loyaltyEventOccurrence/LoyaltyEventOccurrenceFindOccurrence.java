@@ -30,9 +30,9 @@ public class LoyaltyEventOccurrenceFindOccurrence implements LoyaltyEventOccurre
     }
 
     @Override
-    public List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByAccountId(UUID accountId) {
+    public List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByCustomerId(UUID customerId) {
         List<LoyaltyEventOccurrencePostgres> loyaltyEventOccurrencePostgresList =
-                loyaltyEventOccurrenceRepository.findAllByLoyaltyAccountPostgres_Id(accountId);
+                loyaltyEventOccurrenceRepository.findAllByLoyaltyCustomerPostgres_Id(customerId);
 
         return LoyaltyEventOccurrenceMapper.INSTANCE.loyaltyEventOccurrencePostgresListToDtoList(loyaltyEventOccurrencePostgresList);
     }
@@ -43,5 +43,10 @@ public class LoyaltyEventOccurrenceFindOccurrence implements LoyaltyEventOccurre
                 loyaltyEventOccurrenceRepository.findAllByLoyaltyEventPostgres_Id(eventId);
 
         return LoyaltyEventOccurrenceMapper.INSTANCE.loyaltyEventOccurrencePostgresListToDtoList(loyaltyEventOccurrencePostgresList);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyEventOccurrenceRepository.existsById(id);
     }
 }

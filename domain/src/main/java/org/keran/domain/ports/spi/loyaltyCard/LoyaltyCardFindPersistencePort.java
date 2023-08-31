@@ -10,4 +10,6 @@ public interface LoyaltyCardFindPersistencePort {
     Optional<LoyaltyCardDto> findLoyaltyCardById(UUID id);
     Optional<LoyaltyCardDto> findLoyaltyCardByNumber(String cardNumber);
     List<LoyaltyCardDto> getLoyaltyCardsByCustomerId(UUID customerId);
+    boolean existsByLoyaltyCardId(UUID id);
+    boolean existsByLoyaltyCardNumber(String cardNumber);
 }

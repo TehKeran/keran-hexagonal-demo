@@ -1,22 +1,22 @@
 openapi: "3.0.3"
 info:
   title: "Keran Fidelity System - add API"
-  description: "This API is used to add loyalty accounts to the database"
+  description: "This API is used to add loyalty PointBalances to the database"
   version: "1.0.0"
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyCustomerId}:
+  /api/v1/loyaltyPointBalance/{loyaltyAccountId}:
     post:
       tags:
-        - LoyaltyAccountAddController
-      summary: "Add loyalty account."
-      operationId: "addLoyaltyAccountById"
-      description: "Adds a specific loyalty Account to a specific loyalty customer"
+        - LoyaltyPointBalanceAddController
+      summary: "Add loyalty PointBalance to a specific loyalty account."
+      operationId: "addLoyaltyPointBalanceById"
+      description: "Adds a specific loyalty PointBalance to a specific loyalty account"
       parameters:
-        - name: "loyaltyCustomerId"
+        - name: "loyaltyAccountId"
           in: "path"
-          description: "Existing database ID of a loyalty customer"
+          description: "Existing database ID of a loyalty account"
           required: true
           schema:
             type: "string"
@@ -26,17 +26,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../model/swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject'
+              $ref: '../model/swagger-loyaltyPointBalance.yaml#/components/schemas/loyaltyPointBalanceApiObject'
       responses:
         "200":
-          description: "OK - loyalty account created successfully"
+          description: "OK - loyalty PointBalance created successfully"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../model/swagger-loyaltyPointBalance-api-response-object.yaml#/components/schemas/loyaltyPointBalanceResponseObject'
         "404":
           description: "NOT FOUND - loyalty customer could not be found"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

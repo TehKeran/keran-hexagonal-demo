@@ -41,4 +41,9 @@ public class LoyaltyPointBalanceFindAdapter implements LoyaltyPointBalanceFindPe
                 loyaltyPointBalanceRepository.findAllByLoyaltyAccountPostgres_IdAndLoyaltyPointPostgres_Id(accountId, loyaltyPointId);
         return LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalancePostgresListToDtoList(loyaltyPointBalancePostgresList);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyPointBalanceRepository.existsById(id);
+    }
 }

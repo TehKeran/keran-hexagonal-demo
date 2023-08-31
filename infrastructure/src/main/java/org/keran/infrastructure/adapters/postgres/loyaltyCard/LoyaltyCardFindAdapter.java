@@ -38,4 +38,14 @@ public class LoyaltyCardFindAdapter implements LoyaltyCardFindPersistencePort {
         List<LoyaltyCardPostgres> loyaltyCardPostgresList = loyaltyCardRepository.findAllByLoyaltyCustomerPostgres_Id(customerId);
         return LoyaltyCardMapper.INSTANCE.loyaltyCardPostgresListToDtoList(loyaltyCardPostgresList);
     }
+
+    @Override
+    public boolean existsByLoyaltyCardId(UUID id) {
+        return loyaltyCardRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByLoyaltyCardNumber(String cardNumber) {
+        return loyaltyCardRepository.existsByCardNumber(cardNumber);
+    }
 }

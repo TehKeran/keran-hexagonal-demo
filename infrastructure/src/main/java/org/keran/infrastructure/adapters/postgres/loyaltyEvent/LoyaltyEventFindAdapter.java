@@ -53,4 +53,24 @@ public class LoyaltyEventFindAdapter implements LoyaltyEventFindPersistencePort 
         return LoyaltyEventConfigurationMapper.INSTANCE.
                 loyaltyEventConfigurationPostgresListToDtoList(loyaltyEventConfigurationPostgres);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyEventRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return loyaltyEventRepository.existsByName(name);
+    }
+
+    @Override
+    public boolean existsConfigurationByEventIdAndProgramId(UUID loyaltyEventId, UUID loyaltyProgramID) {
+        return loyaltyEventConfigurationRepository.existsByLoyaltyEventPostgres_IdAndLoyaltyProgramPostgres_Id(loyaltyEventId, loyaltyProgramID);
+    }
+
+    @Override
+    public boolean existsConfigurationById(UUID id) {
+        return loyaltyEventConfigurationRepository.existsById(id);
+    }
 }

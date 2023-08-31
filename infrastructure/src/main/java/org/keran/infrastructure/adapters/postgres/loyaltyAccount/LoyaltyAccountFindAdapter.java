@@ -60,4 +60,23 @@ public class LoyaltyAccountFindAdapter implements LoyaltyAccountFindPersistenceP
     public boolean existsLoyaltyAccountById(UUID accountId) {
         return loyaltyAccountTransactionHistoryRepository.existsByLoyaltyAccountPostgres_Id(accountId);
     }
+
+    @Override
+    public List<LoyaltyAccountDto> getLoyaltyAccountsByLoyaltyCustomerId(UUID loyaltyCustomerId) {
+        List<LoyaltyAccountPostgres> loyaltyAccountPostgresList =
+                loyaltyAccountRepository.findAllByLoyaltyCustomerPostgres_Id(loyaltyCustomerId);
+        return LoyaltyAccountMapper.INSTANCE.loyaltyAccountPostgresListToDtoList(loyaltyAccountPostgresList);
+    }
+
+    @Override
+    public boolean existsLoyaltyAccountByAccountNumber(String accountNumber) {
+        return loyaltyAccountRepository.existsByAccountNumber(accountNumber);
+    }
+
+    @Override
+    public List<LoyaltyAccountDto> getLoyaltyAccountsByLoyaltyProgramId(UUID loyaltyProgramId) {
+        List<LoyaltyAccountPostgres> loyaltyAccountPostgresList =
+                loyaltyAccountRepository.findAllLoyaltyAccountsByLoyaltyProgramPostgres_Id(loyaltyProgramId);
+        return LoyaltyAccountMapper.INSTANCE.loyaltyAccountPostgresListToDtoList(loyaltyAccountPostgresList);
+    }
 }

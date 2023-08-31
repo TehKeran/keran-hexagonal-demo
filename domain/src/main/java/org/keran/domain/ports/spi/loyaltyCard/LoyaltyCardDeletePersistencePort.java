@@ -4,5 +4,6 @@ import java.util.UUID;
 
 public interface LoyaltyCardDeletePersistencePort {
     void deleteLoyaltyCardById(UUID loyaltyCardId);
+    void deleteAllLoyaltyCardByLoyaltyCustomerId(UUID loyaltyCustomerId);
 
 }

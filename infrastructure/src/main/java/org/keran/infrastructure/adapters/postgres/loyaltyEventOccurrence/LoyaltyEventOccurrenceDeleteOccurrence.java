@@ -20,4 +20,14 @@ public class LoyaltyEventOccurrenceDeleteOccurrence implements LoyaltyEventOccur
     public void deleteLoyaltyEventOccurrenceById(UUID id) {
         loyaltyEventOccurrenceRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAllLoyaltyEventOccurrencesByLoyaltyCustomerId(UUID loyaltyCustomerId) {
+        loyaltyEventOccurrenceRepository.deleteAllLoyaltyEventOccurrencesByLoyaltyCustomerPostgres_Id(loyaltyCustomerId);
+    }
+
+    @Override
+    public void deleteAllLoyaltyEventOccurrencesByLoyaltyEventId(UUID loyaltyEventId) {
+        loyaltyEventOccurrenceRepository.deleteAllLoyaltyEventOccurrencesByLoyaltyEventPostgres_Id(loyaltyEventId);
+    }
 }

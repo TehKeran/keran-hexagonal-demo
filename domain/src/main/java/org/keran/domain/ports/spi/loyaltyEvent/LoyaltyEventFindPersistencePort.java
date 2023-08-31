@@ -12,4 +12,8 @@ public interface LoyaltyEventFindPersistencePort {
     Optional<LoyaltyEventDto> findLoyaltyEventByName(String name);
     Optional<LoyaltyEventConfigurationDto> findLoyaltyEventConfigurationById(UUID id);
     List<LoyaltyEventConfigurationDto> getLoyaltyEventConfigurationsByProgramId(UUID programId);
+    boolean existsById(UUID id);
+    boolean existsByName(String name);
+    boolean existsConfigurationByEventIdAndProgramId(UUID loyaltyEventId, UUID loyaltyProgramID);
+    boolean existsConfigurationById(UUID id);
 }

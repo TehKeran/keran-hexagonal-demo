@@ -42,4 +42,19 @@ public class LoyaltyAccountFindService implements LoyaltyAccountFindServicePort 
     public boolean existsLoyaltyAccountById(UUID accountId) {
         return loyaltyAccountFindPersistencePort.existsLoyaltyAccountById(accountId);
     }
+
+    @Override
+    public List<LoyaltyAccountDto> getLoyaltyAccountsByLoyaltyCustomerId(UUID loyaltyCustomerId) {
+        return loyaltyAccountFindPersistencePort.getLoyaltyAccountsByLoyaltyCustomerId(loyaltyCustomerId);
+    }
+
+    @Override
+    public boolean existsLoyaltyAccountByAccountNumber(String accountNumber) {
+        return loyaltyAccountFindPersistencePort.existsLoyaltyAccountByAccountNumber(accountNumber);
+    }
+
+    @Override
+    public List<LoyaltyAccountDto> getLoyaltyAccountsByLoyaltyProgramId(UUID loyaltyProgramId) {
+        return loyaltyAccountFindPersistencePort.getLoyaltyAccountsByLoyaltyProgramId(loyaltyProgramId);
+    }
 }

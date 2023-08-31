@@ -1,0 +1,33 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - add API"
+  description: "This API is used to add loyalty EventConfigurations to the database"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /api/v1/loyaltyEventConfiguration:
+    post:
+      tags:
+        - LoyaltyEventConfigurationAddController
+      summary: "Add loyalty EventConfiguration."
+      operationId: "addLoyaltyEventConfigurationById"
+      description: "Adds a specific loyalty EventConfiguration to the database"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../model/swagger-loyaltyEventConfiguration.yaml#/components/schemas/loyaltyEventConfigurationApiObject'
+      responses:
+        "200":
+          description: "OK - loyalty EventConfiguration created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyEventConfiguration-api-response-object.yaml#/components/schemas/loyaltyEventConfigurationResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty customer could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface LoyaltyProgramFindPersistencePort {
     Optional<LoyaltyProgramDto> findLoyaltyProgramById(UUID id);
     Optional<LoyaltyProgramDto> findLoyaltyProgramByName(String name);
+    boolean existsById(UUID id);
 }

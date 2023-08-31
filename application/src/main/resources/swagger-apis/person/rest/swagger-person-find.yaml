@@ -1,42 +1,37 @@
 openapi: "3.0.3"
 info:
-  title: "Keran Fidelity System - find API"
-  description: "This API is used to find loyalty accounts from the database"
+  title: "Keran Fidelity System - Person find API"
+  description: "This API is used to find persons from the database"
   version: "1.0.0"
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /loyaltyAccount/{loyaltyAccountId}:
+  /api/v1/person/{personId}:
     get:
       tags:
-        - LoyaltyAccountFindController
-      summary: "Find loyalty account by ID."
-      operationId: "findLoyaltyAccountById"
-      description: "Finds a specific loyalty Account by its database ID"
+        - personFindController
+      summary: "Find person by ID."
+      operationId: "findPersonById"
+      description: "Finds a specific person by its database ID"
       parameters:
-        - name: "loyaltyAccountId"
+        - name: "personId"
           in: "path"
-          description: "Existing database ID of a loyalty account"
+          description: "Existing database ID of a person"
           required: true
           schema:
             type: "string"
             format: "uuid"
             example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '../model/swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject'
       responses:
         "200":
-          description: "OK - loyalty account found successfully"
+          description: "OK - person found successfully"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../model/swagger-person-api-response-object.yaml#/components/schemas/personResponseObject'
         "404":
-          description: "NOT FOUND - loyalty account could not be found"
+          description: "NOT FOUND - person could not be found"
           content:
             application/json:
               schema:
-                $ref: '../model/swagger-loyaltyAccount-api-response-object.yaml#/components/schemas/loyaltyAccountResponseObject'
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

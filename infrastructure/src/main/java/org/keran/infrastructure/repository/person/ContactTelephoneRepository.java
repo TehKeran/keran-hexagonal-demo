@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface ContactTelephoneRepository extends JpaRepository<ContactTelephonePostgres, UUID> {
     Optional<ContactTelephonePostgres> findByCountryCodeAndTelephoneNumber(String countryCode, String telephoneNumber);
+    void deleteByPersonPostgres_Id(UUID personId);
 }

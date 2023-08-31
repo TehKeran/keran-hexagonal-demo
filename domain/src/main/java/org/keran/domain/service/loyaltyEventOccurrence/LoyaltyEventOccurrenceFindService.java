@@ -23,12 +23,17 @@ public class LoyaltyEventOccurrenceFindService implements LoyaltyEventOccurrence
     }
 
     @Override
-    public List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByAccountId(UUID accountId) {
-        return loyaltyEventOccurrenceFindPersistencePort.findLoyaltyEventOccurrencesByAccountId(accountId);
+    public List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByCustomerId(UUID customerId) {
+        return loyaltyEventOccurrenceFindPersistencePort.findLoyaltyEventOccurrencesByCustomerId(customerId);
     }
 
     @Override
     public List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByEventId(UUID eventId) {
         return loyaltyEventOccurrenceFindPersistencePort.findLoyaltyEventOccurrencesByEventId(eventId);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyEventOccurrenceFindPersistencePort.existsById(id);
     }
 }

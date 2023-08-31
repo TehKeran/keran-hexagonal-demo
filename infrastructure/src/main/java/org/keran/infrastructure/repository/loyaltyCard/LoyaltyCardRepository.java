@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface LoyaltyCardRepository extends JpaRepository<LoyaltyCardPostgres, UUID> {
     Optional<LoyaltyCardPostgres> findByCardNumber(String cardNumber);
     List<LoyaltyCardPostgres> findAllByLoyaltyCustomerPostgres_Id(UUID loyaltyCustomerId);
+    void deleteAllLoyaltyCardsByLoyaltyCustomerPostgres_Id(UUID loyaltyCustomerId);
+    boolean existsByCardNumber(String cardNumber);
 }

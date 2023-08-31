@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public interface LoyaltyEventOccurrenceFindPersistencePort {
     Optional<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrenceById(UUID id);
-    List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByAccountId(UUID accountId);
+    List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByCustomerId(UUID customerId);
     List<LoyaltyEventOccurrenceDto> findLoyaltyEventOccurrencesByEventId(UUID eventId);
+    boolean existsById(UUID id);
 }

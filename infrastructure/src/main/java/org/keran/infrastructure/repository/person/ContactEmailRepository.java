@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface ContactEmailRepository extends JpaRepository<ContactEmailPostgres, UUID> {
     Optional<ContactEmailPostgres> findByEmailAddress(String email);
+    void deleteByPersonPostgres_Id(UUID personId);
 }

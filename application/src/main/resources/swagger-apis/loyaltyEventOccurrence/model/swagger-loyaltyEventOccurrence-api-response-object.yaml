@@ -1,11 +1,11 @@
 components:
   schemas:
-    someNameResponseObject:
+    loyaltyEventOccurrenceResponseObject:
       type: "object"
       properties:
         common:
           $ref: "../../common/swagger-common.yaml#/components/schemas/common"
-        loyaltyAccountApiObjects:
+        loyaltyEventOccurrenceApiObjects:
           type: "array"
           items:
-            $ref: "swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject"
+            $ref: "swagger-loyaltyEventOccurrence.yaml#/components/schemas/loyaltyEventOccurrenceApiObject"

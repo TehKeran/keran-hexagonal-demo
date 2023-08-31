@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS loyalty_event_configuration (
 
 CREATE TABLE IF NOT EXISTS loyalty_event_occurrence (
     id                          UUID PRIMARY KEY not null,
-    loyalty_account_id          UUID not null,
+    loyalty_customer_id         UUID not null,
     loyalty_event_id            UUID not null,
     date_of_occurrence          timestamp not null,
     quantity_of_occurrence      int not null,
@@ -205,8 +205,8 @@ ALTER TABLE IF EXISTS loyalty_event_occurrence
     ADD CONSTRAINT fk_loyalty_event_occurrence_to_loyalty_event FOREIGN KEY (loyalty_event_id)
         REFERENCES loyalty_event (id);
 ALTER TABLE IF EXISTS loyalty_event_occurrence
-    ADD CONSTRAINT fk_loyalty_event_occurrence_to_loyalty_account FOREIGN KEY (loyalty_account_id)
-        REFERENCES loyalty_account (id);
+    ADD CONSTRAINT fk_loyalty_event_occurrence_to_loyalty_customer FOREIGN KEY (loyalty_customer_id)
+        REFERENCES loyalty_customer (id);
 
 -- Loyalty point balance
 ALTER TABLE IF EXISTS loyalty_point_balance

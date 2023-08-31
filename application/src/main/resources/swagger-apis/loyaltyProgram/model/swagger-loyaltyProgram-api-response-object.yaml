@@ -1,6 +1,6 @@
 components:
   schemas:
-    someNameResponseObject:
+    loyaltyProgramResponseObject:
       type: "object"
       properties:
         common:
@@ -8,4 +8,4 @@ components:
         loyaltyAccountApiObjects:
           type: "array"
           items:
-            $ref: "swagger-loyaltyAccount.yaml#/components/schemas/loyaltyAccountApiObject"
+            $ref: "swagger-loyaltyProgram.yaml#/components/schemas/loyaltyProgramApiObject"

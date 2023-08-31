@@ -1,0 +1,42 @@
+openapi: "3.0.3"
+info:
+  title: "Keran Fidelity System - update API"
+  description: "This API is used to update loyalty EventConfigurations"
+  version: "1.0.0"
+servers:
+  - url: "https://keran_fidelity_system_service/api/v1"
+paths:
+  /api/v1/loyaltyEventConfiguration/{loyaltyEventConfigurationId}:
+    put:
+      tags:
+        - LoyaltyEventConfigurationUpdateController
+      summary: "Update loyalty EventConfiguration."
+      operationId: "updateLoyaltyEventConfiguration"
+      description: "Updates a specific loyalty EventConfiguration"
+      parameters:
+        - name: "loyaltyEventConfigurationId"
+          in: "path"
+          description: "Existing database ID of a loyalty EventConfiguration"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../model/swagger-loyaltyEventConfiguration.yaml#/components/schemas/loyaltyEventConfigurationApiObject'
+      responses:
+        "200":
+          description: "OK - loyalty EventConfiguration created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyEventConfiguration-api-response-object.yaml#/components/schemas/loyaltyEventConfigurationResponseObject'
+        "404":
+          description: "NOT FOUND - loyalty customer could not be found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

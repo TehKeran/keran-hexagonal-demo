@@ -33,4 +33,9 @@ public class LoyaltyPointFindAdapter implements LoyaltyPointFindPersistencePort 
 
         return loyaltyPointPostgres.map(LoyaltyPointMapper.INSTANCE::loyaltyPointPostgresToDto);
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return loyaltyPointRepository.existsById(id);
+    }
 }

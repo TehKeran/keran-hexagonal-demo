@@ -2,19 +2,15 @@ package org.keran.application.controller.loyaltyEventOccurrence;
 
 import org.keran.application.mapper.loyaltyEventOccurrence.LoyaltyEventOccurrenceMapper;
 import org.keran.application.utility.loyaltyEventOccurrence.LoyaltyEventOccurrenceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyEventOccurrence.LoyaltyEventOccurrenceDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyEventOccurrence.LoyaltyEventOccurrenceFindServicePort;
 import org.keran.infrastructure.data.LoyaltyEventOccurrenceApiObject;
 import org.keran.infrastructure.data.LoyaltyEventOccurrenceResponseObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,8 +25,6 @@ public class LoyaltyEventOccurrenceFindController implements LoyaltyEventOccurre
 
     @Override
     public ResponseEntity<LoyaltyEventOccurrenceResponseObject> findLoyaltyEventOccurrenceById(@PathVariable UUID loyaltyEventOccurrenceId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventOccurrenceId, "loyaltyEventOccurrence", "loyaltyEventOccurrenceId");
         // Find
         Optional<LoyaltyEventOccurrenceDto> loyaltyEventOccurrenceDto =
                 loyaltyEventOccurrenceFindServicePort.findLoyaltyEventOccurrenceById(loyaltyEventOccurrenceId);
@@ -44,7 +38,7 @@ public class LoyaltyEventOccurrenceFindController implements LoyaltyEventOccurre
                     List.of(loyaltyEventOccurrenceApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyEventOccurrenceFindController.class, "LoyaltyEventOccurrence", loyaltyEventOccurrenceId.toString());
+            throw new EntityNotFoundException(LoyaltyEventOccurrenceDto.class.getSimpleName(), loyaltyEventOccurrenceId.toString());
         }
     }
 }

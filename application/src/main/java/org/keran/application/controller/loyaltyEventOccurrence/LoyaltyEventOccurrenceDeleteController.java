@@ -1,7 +1,6 @@
 package org.keran.application.controller.loyaltyEventOccurrence;
 
 import org.keran.application.utility.loyaltyEventOccurrence.LoyaltyEventOccurrenceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.ports.api.loyaltyEventOccurrence.LoyaltyEventOccurrenceDeleteServicePort;
 import org.keran.infrastructure.data.LoyaltyEventOccurrenceResponseObject;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +20,6 @@ public class LoyaltyEventOccurrenceDeleteController implements LoyaltyEventOccur
 
     @Override
     public ResponseEntity<LoyaltyEventOccurrenceResponseObject> deleteLoyaltyEventOccurrenceById(@PathVariable UUID loyaltyEventOccurrenceId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventOccurrenceId, "loyaltyEventOccurrence", "loyaltyEventOccurrenceId");
-
         // Delete (with validations)
         loyaltyEventOccurrenceDeleteServicePort.deleteLoyaltyEventOccurrenceById(loyaltyEventOccurrenceId);
         // Prepare response

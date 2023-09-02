@@ -6,13 +6,30 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /api/v1/loyaltyEventConfiguration:
+  /api/v1/loyaltyEventConfiguration/{loyaltyProgramId}/{loyaltyEventId}:
     post:
       tags:
         - LoyaltyEventConfigurationAddController
       summary: "Add loyalty EventConfiguration."
       operationId: "addLoyaltyEventConfigurationById"
       description: "Adds a specific loyalty EventConfiguration to the database"
+      parameters:
+        - name: "loyaltyProgramId"
+          in: "path"
+          description: "Existing database ID of a loyalty program"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+        - name: "loyaltyEventId"
+          in: "path"
+          description: "Existing database ID of a loyalty event"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
       requestBody:
         content:
           application/json:

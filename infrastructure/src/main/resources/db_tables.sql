@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS loyalty_account (
     account_number              varchar(255) unique not null,
     external_account_number     varchar(255),
     start_date                  timestamp not null,
-    end_date                    timestamp not null,
+    close_date                  timestamp,
     last_modification_by        varchar(255),
     last_modification_on        timestamp
 );
@@ -106,7 +106,6 @@ CREATE TABLE IF NOT EXISTS loyalty_point_balance (
     loyalty_account_id          UUID not null,
     loyalty_point_id            UUID not null,
     balance                     int not null,
-    image_url                   varchar(255) not null,
     last_modification_by        varchar(255),
     last_modification_on        timestamp
 );
@@ -114,6 +113,7 @@ CREATE TABLE IF NOT EXISTS loyalty_point_balance (
 CREATE TABLE IF NOT EXISTS person (
     id                          UUID PRIMARY KEY not null,
     loyalty_customer_id         UUID not null,
+    salutation                  varchar(255) not null,
     first_name                  varchar(255) not null,
     middle_name                 varchar(255),
     first_last_name             varchar(255) not null,

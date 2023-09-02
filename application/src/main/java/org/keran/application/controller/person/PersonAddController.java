@@ -2,7 +2,6 @@ package org.keran.application.controller.person;
 
 import org.keran.application.mapper.person.PersonMapper;
 import org.keran.application.utility.person.PersonResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.person.PersonApiValidator;
 import org.keran.domain.data.person.PersonDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -10,6 +9,8 @@ import org.keran.domain.ports.api.person.PersonAddServicePort;
 import org.keran.infrastructure.data.PersonApiObject;
 import org.keran.infrastructure.data.PersonResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public class PersonAddController implements PersonAddControllerApi {
     }
 
     @Override
-    public ResponseEntity<PersonResponseObject> addPersonById(UUID loyaltyCustomerId, PersonApiObject personApiObject) {
+    public ResponseEntity<PersonResponseObject> addPersonById(@PathVariable UUID loyaltyCustomerId,
+                                                              @RequestBody PersonApiObject personApiObject) {
         // API validations
-        CommonApiValidator.validateFieldExists(loyaltyCustomerId, "loyaltyCustomer", "loyaltyCustomerId");
-        CommonApiValidator.validateEntityExists(personApiObject, "personApiObject");
         PersonApiValidator.validatePersonApiObject(personApiObject);
 
         // Update (with validations)
+        personApiObject.setLoyaltyCustomerId(loyaltyCustomerId);
         PersonDto personDto = PersonMapper.INSTANCE.personApiObjectToDto(personApiObject);
         Optional<PersonDto> personDtoCreated = personAddServicePort.addPerson(personDto);
 
@@ -44,7 +45,7 @@ public class PersonAddController implements PersonAddControllerApi {
                     List.of(personApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(PersonAddController.class, "Person", "null");
+            throw new EntityNotCreatedException(PersonDto.class.getSimpleName());
         }
     }
 }

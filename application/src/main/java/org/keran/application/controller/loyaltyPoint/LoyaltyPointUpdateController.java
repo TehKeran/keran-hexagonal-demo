@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyPoint;
 
 import org.keran.application.mapper.loyaltyPoint.LoyaltyPointMapper;
 import org.keran.application.utility.loyaltyPoint.LoyaltyPointResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyPoint.LoyaltyPointDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyPoint.LoyaltyPointUpdateServicePort;
@@ -25,10 +24,6 @@ public class LoyaltyPointUpdateController implements LoyaltyPointUpdateControlle
 
     @Override
     public ResponseEntity<LoyaltyPointResponseObject> updateLoyaltyPoint(@PathVariable UUID loyaltyPointId, @RequestBody LoyaltyPointApiObject loyaltyPointApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyPointId, "loyaltyPoint", "loyaltyPointId");
-        CommonApiValidator.validateEntityExists(loyaltyPointApiObject, "loyaltyPointApiObject");
-
         // Update
         loyaltyPointApiObject.setId(loyaltyPointId);
         LoyaltyPointDto loyaltyPointDto = LoyaltyPointMapper.INSTANCE.loyaltyPointApiObjectToDto(loyaltyPointApiObject);
@@ -43,7 +38,7 @@ public class LoyaltyPointUpdateController implements LoyaltyPointUpdateControlle
                     List.of(loyaltyPointApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyPointUpdateController.class, "loyaltyPoint", "null");
+            throw new EntityNotCreatedException(LoyaltyPointDto.class.getSimpleName());
         }
     }
 }

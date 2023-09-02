@@ -2,13 +2,13 @@ package org.keran.application.controller.loyaltyProgram;
 
 import org.keran.application.mapper.loyaltyProgram.LoyaltyProgramMapper;
 import org.keran.application.utility.loyaltyProgram.LoyaltyProgramResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyProgram.LoyaltyProgramDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyProgram.LoyaltyProgramFindServicePort;
 import org.keran.infrastructure.data.LoyaltyProgramApiObject;
 import org.keran.infrastructure.data.LoyaltyProgramResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,9 +24,7 @@ public class LoyaltyProgramFindController implements LoyaltyProgramFindControlle
     }
 
     @Override
-    public ResponseEntity<LoyaltyProgramResponseObject> findLoyaltyProgramById(UUID loyaltyProgramId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyProgramId, "loyaltyProgram", "loyaltyProgramId");
+    public ResponseEntity<LoyaltyProgramResponseObject> findLoyaltyProgramById(@PathVariable UUID loyaltyProgramId) {
         // Find
         Optional<LoyaltyProgramDto> loyaltyProgramDto = loyaltyProgramFindServicePort.findLoyaltyProgramById(loyaltyProgramId);
         // Prepare response
@@ -38,7 +36,7 @@ public class LoyaltyProgramFindController implements LoyaltyProgramFindControlle
                     List.of(loyaltyProgramApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyProgramFindController.class, "LoyaltyProgram", "null");
+            throw new EntityNotFoundException(LoyaltyProgramDto.class.getSimpleName());
         }
     }
 }

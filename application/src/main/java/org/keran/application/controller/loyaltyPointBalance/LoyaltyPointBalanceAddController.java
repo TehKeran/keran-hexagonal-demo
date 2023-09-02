@@ -2,9 +2,7 @@ package org.keran.application.controller.loyaltyPointBalance;
 
 import org.keran.application.mapper.loyaltyPointBalance.LoyaltyPointBalanceMapper;
 import org.keran.application.utility.loyaltyPointBalance.LoyaltyPointBalanceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyPointBalance.LoyaltyPointBalanceApiValidator;
-import org.keran.domain.data.loyaltyPoint.LoyaltyPointDto;
 import org.keran.domain.data.loyaltyPointBalance.LoyaltyPointBalanceDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyPointBalance.LoyaltyPointBalanceAddServicePort;
@@ -27,14 +25,14 @@ public class LoyaltyPointBalanceAddController implements LoyaltyPointBalanceAddC
 
     @Override
     public ResponseEntity<LoyaltyPointBalanceResponseObject> addLoyaltyPointBalanceById(@PathVariable UUID loyaltyAccountId,
+                                                                                        @PathVariable UUID loyaltyPointId,
                                                                                         @RequestBody LoyaltyPointBalanceApiObject loyaltyPointBalanceApiObject) {
         // API validation
-        CommonApiValidator.validateEntityExists(loyaltyPointBalanceApiObject, "loyaltyPointBalanceApiObject");
-        CommonApiValidator.validateFieldExists(loyaltyAccountId, "loyaltyAccount", "loyaltyAccountId");
         LoyaltyPointBalanceApiValidator.validateLoyaltyPointBalanceApiObject(loyaltyPointBalanceApiObject);
 
         // Create (with validations)
         loyaltyPointBalanceApiObject.setLoyaltyAccountId(loyaltyAccountId);
+        loyaltyPointBalanceApiObject.setLoyaltyPointId(loyaltyPointId);
         LoyaltyPointBalanceDto loyaltyPointBalanceDto =
                 LoyaltyPointBalanceMapper.INSTANCE.loyaltyPointBalanceApiObjectToDto(loyaltyPointBalanceApiObject);
         Optional<LoyaltyPointBalanceDto> loyaltyPointBalanceDtoCreated =
@@ -49,7 +47,7 @@ public class LoyaltyPointBalanceAddController implements LoyaltyPointBalanceAddC
                     List.of(loyaltyPointBalanceApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyPointBalanceAddController.class, "LoyaltyPointBalance", "null");
+            throw new EntityNotCreatedException(LoyaltyPointBalanceDto.class.getSimpleName());
         }
     }
 }

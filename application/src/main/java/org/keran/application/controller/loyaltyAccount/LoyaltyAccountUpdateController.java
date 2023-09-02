@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyAccount;
 
 import org.keran.application.mapper.loyaltyAccount.LoyaltyAccountMapper;
 import org.keran.application.utility.loyaltyAccount.LoyaltyAccountResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyAccount.LoyaltyAccountUpdateServicePort;
@@ -25,10 +24,6 @@ public class LoyaltyAccountUpdateController implements LoyaltyAccountUpdateContr
 
     @Override
     public ResponseEntity<LoyaltyAccountResponseObject> updateLoyaltyAccount(@PathVariable UUID loyaltyAccountId, @RequestBody LoyaltyAccountApiObject loyaltyAccountApiObject) {
-        // API validation:
-        CommonApiValidator.validateFieldExists(loyaltyAccountId, "LoyaltyAccount", "loyaltyAccountId");
-        CommonApiValidator.validateEntityExists(loyaltyAccountApiObject, "LoyaltyAccountApiObject");
-
         // Update (with validation)
         loyaltyAccountApiObject.setId(loyaltyAccountId);
         LoyaltyAccountDto loyaltyAccountDto = LoyaltyAccountMapper.INSTANCE.loyaltyAccountApiObjectToDto(loyaltyAccountApiObject);
@@ -43,7 +38,7 @@ public class LoyaltyAccountUpdateController implements LoyaltyAccountUpdateContr
                     List.of(loyaltyAccountApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyAccountUpdateController.class, "LoyaltyAccount", loyaltyAccountId.toString());
+            throw new EntityNotCreatedException(LoyaltyAccountDto.class.getSimpleName());
         }
     }
 }

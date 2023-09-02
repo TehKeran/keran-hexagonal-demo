@@ -14,11 +14,11 @@ import javax.persistence.*;
 @QueryEntity
 @Table(name = "loyalty_event_configuration")
 public class LoyaltyEventConfigurationPostgres extends AbstractPostgresEntity {
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_program_id", referencedColumnName = "id", nullable = false)
     private LoyaltyProgramPostgres loyaltyProgramPostgres;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_event_id", referencedColumnName = "id", nullable = false)
     private LoyaltyEventPostgres loyaltyEventPostgres;
 

@@ -2,13 +2,13 @@ package org.keran.application.controller.person;
 
 import org.keran.application.mapper.person.PersonMapper;
 import org.keran.application.utility.person.PersonResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.person.PersonDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.person.PersonFindServicePort;
 import org.keran.infrastructure.data.PersonApiObject;
 import org.keran.infrastructure.data.PersonResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,10 +24,7 @@ public class PersonFindController implements PersonFindControllerApi {
     }
 
     @Override
-    public ResponseEntity<PersonResponseObject> findPersonById(UUID personId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(personId, "person", "personId");
-
+    public ResponseEntity<PersonResponseObject> findPersonById(@PathVariable UUID personId) {
         // Find
         Optional<PersonDto> personDto = personFindServicePort.findPersonById(personId);
 
@@ -39,7 +36,7 @@ public class PersonFindController implements PersonFindControllerApi {
                     List.of(personApiObject));
         }
         else {
-            throw new EntityNotFoundException(PersonFindController.class, "Person", "null");
+            throw new EntityNotFoundException(PersonDto.class.getSimpleName());
         }
     }
 }

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @QueryEntity
 @Table(name = "loyalty_account_transaction_history")
 public class LoyaltyAccountTransactionHistoryPostgres extends AbstractPostgresEntity {
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_account_id", referencedColumnName = "id", nullable = false)
     private LoyaltyAccountPostgres loyaltyAccountPostgres;
 

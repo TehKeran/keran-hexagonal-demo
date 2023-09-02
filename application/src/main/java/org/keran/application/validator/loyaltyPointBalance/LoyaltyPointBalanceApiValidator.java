@@ -6,13 +6,9 @@ import org.keran.infrastructure.data.LoyaltyPointBalanceApiObject;
 
 @UtilityClass
 public class LoyaltyPointBalanceApiValidator {
-    private static final Object currentClass = LoyaltyPointBalanceApiValidator.class;
     public static void validateLoyaltyPointBalanceApiObject(LoyaltyPointBalanceApiObject loyaltyPointBalanceApiObject) {
         if (loyaltyPointBalanceApiObject.getBalance() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyPointBalanceApiObject", "balance");
-        }
-        if (loyaltyPointBalanceApiObject.getLoyaltyPointId() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyPointBalanceApiObject", "loyaltyPointId");
+            throw new FieldIsMissingException(LoyaltyPointBalanceApiObject.class.getSimpleName(), "balance");
         }
     }
 }

@@ -1,10 +1,10 @@
 package org.keran.application.controller.loyaltyProgram;
 
 import org.keran.application.utility.loyaltyProgram.LoyaltyProgramResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.ports.api.loyaltyProgram.LoyaltyProgramDeleteServicePort;
 import org.keran.infrastructure.data.LoyaltyProgramResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -19,10 +19,7 @@ public class LoyaltyProgramDeleteController implements LoyaltyProgramDeleteContr
     }
 
     @Override
-    public ResponseEntity<LoyaltyProgramResponseObject> deleteLoyaltyProgramById(UUID loyaltyProgramId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyProgramId, "loyaltyProgram", "loyaltyProgramId");
-
+    public ResponseEntity<LoyaltyProgramResponseObject> deleteLoyaltyProgramById(@PathVariable UUID loyaltyProgramId) {
         // Delete loyalty program (with validations)
         loyaltyProgramDeleteServicePort.deleteLoyaltyProgramById(loyaltyProgramId);
 

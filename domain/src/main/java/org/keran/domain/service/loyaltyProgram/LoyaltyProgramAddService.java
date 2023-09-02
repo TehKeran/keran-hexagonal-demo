@@ -25,6 +25,8 @@ public class LoyaltyProgramAddService implements LoyaltyProgramAddServicePort {
         if (loyaltyProgramDto.getId() != null) {
             loyaltyProgramValidator.validateLoyaltyProgramNotExists(loyaltyProgramDto.getId());
         }
+        // - Name must be unique
+        loyaltyProgramValidator.validateLoyaltyProgramNotExistsByName(loyaltyProgramDto.getName());
 
         return loyaltyProgramAddPersistencePort.addLoyaltyProgram(loyaltyProgramDto);
     }

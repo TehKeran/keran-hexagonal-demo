@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyEventOccurrence;
 
 import org.keran.application.mapper.loyaltyEventOccurrence.LoyaltyEventOccurrenceMapper;
 import org.keran.application.utility.loyaltyEventOccurrence.LoyaltyEventOccurrenceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyEventOccurrence.LoyaltyEventOccurrenceDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyEventOccurrence.LoyaltyEventOccurrenceUpdateServicePort;
@@ -26,16 +25,13 @@ public class LoyaltyEventOccurrenceUpdateController implements LoyaltyEventOccur
     @Override
     public ResponseEntity<LoyaltyEventOccurrenceResponseObject> updateLoyaltyEventOccurrence(@PathVariable UUID loyaltyEventOccurrenceId,
                                                                                              @RequestBody LoyaltyEventOccurrenceApiObject loyaltyEventOccurrenceApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventOccurrenceId, "loyaltyEventOccurrence", "loyaltyEventOccurrenceId");
-        CommonApiValidator.validateEntityExists(loyaltyEventOccurrenceApiObject, "loyaltyEventOccurrenceApiObject");
-
         // Update (with validations)
         loyaltyEventOccurrenceApiObject.setId(loyaltyEventOccurrenceId);
         LoyaltyEventOccurrenceDto loyaltyEventOccurrenceDto =
                 LoyaltyEventOccurrenceMapper.INSTANCE.loyaltyEventOccurrenceApiObjectToDto(loyaltyEventOccurrenceApiObject);
         Optional<LoyaltyEventOccurrenceDto> loyaltyEventOccurrenceDtoUpdated =
                 loyaltyEventOccurrenceUpdateServicePort.updateLoyaltyEventOccurrence(loyaltyEventOccurrenceDto);
+
         // Prepare response
         if (loyaltyEventOccurrenceDtoUpdated.isPresent()) {
             LoyaltyEventOccurrenceApiObject loyaltyEventOccurrenceApiObjectUpdated =
@@ -45,7 +41,7 @@ public class LoyaltyEventOccurrenceUpdateController implements LoyaltyEventOccur
                     List.of(loyaltyEventOccurrenceApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyEventOccurrenceUpdateController.class, "LoyaltyEventOccurrence", "null");
+            throw new EntityNotCreatedException(LoyaltyEventOccurrenceDto.class.getSimpleName());
         }
     }
 }

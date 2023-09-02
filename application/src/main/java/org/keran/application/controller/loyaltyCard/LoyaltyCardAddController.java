@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyCard;
 
 import org.keran.application.mapper.loyaltyCard.LoyaltyCardMapper;
 import org.keran.application.utility.loyaltyCard.LoyaltyCardResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyCard.LoyaltyCardApiValidator;
 import org.keran.domain.data.loyaltyCard.LoyaltyCardDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -26,10 +25,10 @@ public class LoyaltyCardAddController implements LoyaltyCardAddControllerApi {
     }
 
     @Override
-    public ResponseEntity<LoyaltyCardResponseObject> addLoyaltyCardById(@PathVariable UUID loyaltyCustomerId, @RequestBody LoyaltyCardApiObject loyaltyCardApiObject) {
+    public ResponseEntity<LoyaltyCardResponseObject> addLoyaltyCardById(
+            @PathVariable UUID loyaltyCustomerId,
+            @RequestBody LoyaltyCardApiObject loyaltyCardApiObject) {
         // API validation
-        CommonApiValidator.validateFieldExists(loyaltyCustomerId, "LoyaltyCustomer", "loyaltyCustomerId");
-        CommonApiValidator.validateEntityExists(loyaltyCardApiObject, "loyaltyCardApiObject");
         LoyaltyCardApiValidator.validateLoyaltyCardApiObject(loyaltyCardApiObject);
 
         // Create (with validation)
@@ -46,7 +45,7 @@ public class LoyaltyCardAddController implements LoyaltyCardAddControllerApi {
                     List.of(loyaltyCardApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyCardAddController.class, "LoyaltyCard", "null");
+            throw new EntityNotCreatedException(LoyaltyCardDto.class.getSimpleName());
         }
     }
 }

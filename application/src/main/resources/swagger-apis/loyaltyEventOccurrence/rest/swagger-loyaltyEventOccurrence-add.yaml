@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /api/v1/loyaltyEventOccurrence/{loyaltyCustomerId}:
+  /api/v1/loyaltyEventOccurrence/{loyaltyCustomerId}/{loyaltyEventId}:
     post:
       tags:
         - LoyaltyEventOccurrenceAddController
@@ -17,6 +17,14 @@ paths:
         - name: "loyaltyCustomerId"
           in: "path"
           description: "Existing database ID of a loyalty customer"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+        - name: "loyaltyEventId"
+          in: "path"
+          description: "Existing database ID of a loyalty event"
           required: true
           schema:
             type: "string"

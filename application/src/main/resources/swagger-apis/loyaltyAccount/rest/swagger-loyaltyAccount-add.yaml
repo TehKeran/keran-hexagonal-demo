@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /api/v1/loyaltyAccount/{loyaltyCustomerId}:
+  /api/v1/loyaltyAccount/{loyaltyProgramId}/{loyaltyCustomerId}:
     post:
       tags:
         - LoyaltyAccountAddController
@@ -14,6 +14,14 @@ paths:
       operationId: "addLoyaltyAccountById"
       description: "Adds a specific loyalty Account to a specific loyalty customer"
       parameters:
+        - name: "loyaltyProgramId"
+          in: "path"
+          description: "Existing database ID of a loyalty program"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
         - name: "loyaltyCustomerId"
           in: "path"
           description: "Existing database ID of a loyalty customer"

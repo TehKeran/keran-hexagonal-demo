@@ -16,11 +16,11 @@ import java.util.Date;
 @QueryEntity
 @Table(name = "loyalty_event_occurrence")
 public class LoyaltyEventOccurrencePostgres extends AbstractPostgresEntity {
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_customer_id", referencedColumnName = "id", nullable = false)
     private LoyaltyCustomerPostgres loyaltyCustomerPostgres;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_event_id", referencedColumnName = "id", nullable = false)
     private LoyaltyEventPostgres loyaltyEventPostgres;
 

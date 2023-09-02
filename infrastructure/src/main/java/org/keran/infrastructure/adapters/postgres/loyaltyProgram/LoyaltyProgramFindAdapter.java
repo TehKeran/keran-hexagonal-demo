@@ -5,15 +5,12 @@ import org.keran.domain.ports.spi.loyaltyProgram.LoyaltyProgramFindPersistencePo
 import org.keran.infrastructure.data.postgres.loyaltyProgram.LoyaltyProgramPostgres;
 import org.keran.infrastructure.mappers.loyaltyProgram.LoyaltyProgramMapper;
 import org.keran.infrastructure.repository.loyaltyProgram.LoyaltyProgramRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
 @Service
 public class LoyaltyProgramFindAdapter implements LoyaltyProgramFindPersistencePort {
-    private static Logger logger = LoggerFactory.getLogger(LoyaltyProgramFindAdapter.class);
     private final LoyaltyProgramRepository loyaltyProgramRepository;
 
     public LoyaltyProgramFindAdapter(LoyaltyProgramRepository loyaltyProgramRepository) {
@@ -35,5 +32,10 @@ public class LoyaltyProgramFindAdapter implements LoyaltyProgramFindPersistenceP
     @Override
     public boolean existsById(UUID id) {
         return loyaltyProgramRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return loyaltyProgramRepository.existsByName(name);
     }
 }

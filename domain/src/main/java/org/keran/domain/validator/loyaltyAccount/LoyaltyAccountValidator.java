@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Service
 public class LoyaltyAccountValidator {
-    private final Object currentClass = LoyaltyAccountValidator.class;
     private final String entityName = "LoyaltyAccount";
     private final LoyaltyAccountFindServicePort loyaltyAccountFindServicePort;
 
@@ -26,7 +25,7 @@ public class LoyaltyAccountValidator {
         boolean loyaltyAccountExists = loyaltyAccountFindServicePort.existsLoyaltyAccountById(id);
 
         if (!loyaltyAccountExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -40,7 +39,7 @@ public class LoyaltyAccountValidator {
         boolean loyaltyAccountExists = loyaltyAccountFindServicePort.existsLoyaltyAccountById(id);
 
         if (loyaltyAccountExists) {
-            throw new EntityAlreadyExistsException(currentClass, entityName, id.toString());
+            throw new EntityAlreadyExistsException(entityName, id.toString());
         }
     }
 
@@ -54,7 +53,7 @@ public class LoyaltyAccountValidator {
         boolean loyaltyAccountExists = loyaltyAccountFindServicePort.existsLoyaltyAccountByAccountNumber(accountNumber);
 
         if (loyaltyAccountExists) {
-            throw new EntityAlreadyExistsException(currentClass, entityName, accountNumber);
+            throw new EntityAlreadyExistsException(entityName, accountNumber);
         }
     }
 }

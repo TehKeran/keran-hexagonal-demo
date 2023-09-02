@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /api/v1/person:
+  /api/v1/person/{loyaltyCustomerId}:
     post:
       tags:
         - personAddController

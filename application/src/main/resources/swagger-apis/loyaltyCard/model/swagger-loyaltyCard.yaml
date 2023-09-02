@@ -15,6 +15,12 @@ components:
           type: "string"
         cardImageUrl:
           type: "string"
+        cardType:
+          type: "string"
+          enum:
+            - "L1_STANDARD"
+            - "L2_PREMIUM"
+            - "L3_VIP"
         lastModificationOn:
           type: "string"
           format: "date"

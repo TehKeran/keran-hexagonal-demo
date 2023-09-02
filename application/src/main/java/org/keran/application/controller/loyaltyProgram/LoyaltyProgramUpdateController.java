@@ -2,13 +2,14 @@ package org.keran.application.controller.loyaltyProgram;
 
 import org.keran.application.mapper.loyaltyProgram.LoyaltyProgramMapper;
 import org.keran.application.utility.loyaltyProgram.LoyaltyProgramResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyProgram.LoyaltyProgramDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyProgram.LoyaltyProgramUpdateServicePort;
 import org.keran.infrastructure.data.LoyaltyProgramApiObject;
 import org.keran.infrastructure.data.LoyaltyProgramResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,11 +25,8 @@ public class LoyaltyProgramUpdateController implements LoyaltyProgramUpdateContr
     }
 
     @Override
-    public ResponseEntity<LoyaltyProgramResponseObject> updateLoyaltyProgram(UUID loyaltyProgramId, LoyaltyProgramApiObject loyaltyProgramApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyProgramId, "loyaltyProgram", "loyaltyProgramId");
-        CommonApiValidator.validateEntityExists(loyaltyProgramApiObject, "loyaltyProgramApiObject");
-
+    public ResponseEntity<LoyaltyProgramResponseObject> updateLoyaltyProgram(@PathVariable UUID loyaltyProgramId,
+                                                                             @RequestBody LoyaltyProgramApiObject loyaltyProgramApiObject) {
         // Update (with validations)
         loyaltyProgramApiObject.setId(loyaltyProgramId);
         LoyaltyProgramDto loyaltyProgramDto = LoyaltyProgramMapper.INSTANCE.loyaltyProgramApiObjectToDto(loyaltyProgramApiObject);
@@ -43,7 +41,7 @@ public class LoyaltyProgramUpdateController implements LoyaltyProgramUpdateContr
                     List.of(loyaltyProgramApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyProgramUpdateController.class, "LoyaltyProgram", "null");
+            throw new EntityNotCreatedException(LoyaltyProgramDto.class.getSimpleName());
         }
     }
 }

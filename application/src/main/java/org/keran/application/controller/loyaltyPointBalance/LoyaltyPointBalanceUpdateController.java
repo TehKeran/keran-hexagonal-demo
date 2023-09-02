@@ -2,13 +2,14 @@ package org.keran.application.controller.loyaltyPointBalance;
 
 import org.keran.application.mapper.loyaltyPointBalance.LoyaltyPointBalanceMapper;
 import org.keran.application.utility.loyaltyPointBalance.LoyaltyPointBalanceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyPointBalance.LoyaltyPointBalanceDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyPointBalance.LoyaltyPointBalanceUpdateServicePort;
 import org.keran.infrastructure.data.LoyaltyPointBalanceApiObject;
 import org.keran.infrastructure.data.LoyaltyPointBalanceResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,11 +25,8 @@ public class LoyaltyPointBalanceUpdateController implements LoyaltyPointBalanceU
     }
 
     @Override
-    public ResponseEntity<LoyaltyPointBalanceResponseObject> updateLoyaltyPointBalance(UUID loyaltyPointBalanceId, LoyaltyPointBalanceApiObject loyaltyPointBalanceApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyPointBalanceId, "loyaltyPointBalance", "loyaltyPointBalanceId");
-        CommonApiValidator.validateEntityExists(loyaltyPointBalanceApiObject, "loyaltyPointBalanceApiObject");
-
+    public ResponseEntity<LoyaltyPointBalanceResponseObject> updateLoyaltyPointBalance(@PathVariable UUID loyaltyPointBalanceId,
+                                                                                       @RequestBody LoyaltyPointBalanceApiObject loyaltyPointBalanceApiObject) {
         // Update (with validations)
         loyaltyPointBalanceApiObject.setId(loyaltyPointBalanceId);
         LoyaltyPointBalanceDto loyaltyPointBalanceDto =
@@ -45,8 +43,7 @@ public class LoyaltyPointBalanceUpdateController implements LoyaltyPointBalanceU
                     List.of(loyaltyPointBalanceApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyPointBalanceUpdateController.class, "LoyaltyPointBalance", "null");
+            throw new EntityNotCreatedException(LoyaltyPointBalanceDto.class.getSimpleName());
         }
-
     }
 }

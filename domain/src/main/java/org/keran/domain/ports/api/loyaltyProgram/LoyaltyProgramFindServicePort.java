@@ -9,4 +9,5 @@ public interface LoyaltyProgramFindServicePort {
     Optional<LoyaltyProgramDto> findLoyaltyProgramById(UUID id);
     Optional<LoyaltyProgramDto> findLoyaltyProgramByName(String name);
     boolean existsById(UUID id);
+    boolean existsByName(String name);
 }

@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyProgram;
 
 import org.keran.application.mapper.loyaltyProgram.LoyaltyProgramMapper;
 import org.keran.application.utility.loyaltyProgram.LoyaltyProgramResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyProgram.LoyaltyProgramApiValidator;
 import org.keran.domain.data.loyaltyProgram.LoyaltyProgramDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -10,6 +9,7 @@ import org.keran.domain.ports.api.loyaltyProgram.LoyaltyProgramAddServicePort;
 import org.keran.infrastructure.data.LoyaltyProgramApiObject;
 import org.keran.infrastructure.data.LoyaltyProgramResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,9 +24,8 @@ public class LoyaltyProgramAddController implements LoyaltyProgramAddControllerA
     }
 
     @Override
-    public ResponseEntity<LoyaltyProgramResponseObject> addLoyaltyProgramById(LoyaltyProgramApiObject loyaltyProgramApiObject) {
+    public ResponseEntity<LoyaltyProgramResponseObject> addLoyaltyProgramById(@RequestBody LoyaltyProgramApiObject loyaltyProgramApiObject) {
         // API validation
-        CommonApiValidator.validateEntityExists(loyaltyProgramApiObject, "loyaltyProgramApiObject");
         LoyaltyProgramApiValidator.validateLoyaltyProgramApiObject(loyaltyProgramApiObject);
 
         // Create (with validations)
@@ -43,7 +42,7 @@ public class LoyaltyProgramAddController implements LoyaltyProgramAddControllerA
                     List.of(loyaltyProgramApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyProgramAddController.class, "LoyaltyProgram", "null");
+            throw new EntityNotCreatedException(LoyaltyProgramDto.class.getSimpleName());
         }
     }
 }

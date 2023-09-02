@@ -9,8 +9,6 @@ import org.keran.infrastructure.mappers.loyaltyAccount.LoyaltyAccountMapper;
 import org.keran.infrastructure.mappers.loyaltyAccount.LoyaltyAccountTransactionHistoryMapper;
 import org.keran.infrastructure.repository.loyaltyAccount.LoyaltyAccountRepository;
 import org.keran.infrastructure.repository.loyaltyAccount.LoyaltyAccountTransactionHistoryRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +16,6 @@ import java.util.Optional;
 import java.util.UUID;
 @Service
 public class LoyaltyAccountFindAdapter implements LoyaltyAccountFindPersistencePort {
-    private static Logger logger = LoggerFactory.getLogger(LoyaltyAccountFindAdapter.class);
     private final LoyaltyAccountRepository loyaltyAccountRepository;
     private final LoyaltyAccountTransactionHistoryRepository loyaltyAccountTransactionHistoryRepository;
 
@@ -58,7 +55,7 @@ public class LoyaltyAccountFindAdapter implements LoyaltyAccountFindPersistenceP
 
     @Override
     public boolean existsLoyaltyAccountById(UUID accountId) {
-        return loyaltyAccountTransactionHistoryRepository.existsByLoyaltyAccountPostgres_Id(accountId);
+        return loyaltyAccountRepository.existsById(accountId);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.keran.application.controller.loyaltyPoint;
 
 import org.keran.application.utility.loyaltyPoint.LoyaltyPointResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.ports.api.loyaltyPoint.LoyaltyPointDeleteServicePort;
 import org.keran.infrastructure.data.LoyaltyPointResponseObject;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +20,6 @@ public class LoyaltyPointDeleteController implements LoyaltyPointDeleteControlle
 
     @Override
     public ResponseEntity<LoyaltyPointResponseObject> deleteLoyaltyPointById(@PathVariable UUID loyaltyPointId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyPointId, "loyaltyPoint", "loyaltyPointId");
-
         // Delete (with validations)
         loyaltyPointDeleteServicePort.deleteLoyaltyPointById(loyaltyPointId);
 

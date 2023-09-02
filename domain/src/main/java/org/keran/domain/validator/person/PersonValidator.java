@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Service
 public class PersonValidator {
-    private final Object currentClass = PersonValidator.class;
     private final String entityName = "Person";
     private final PersonFindServicePort personFindServicePort;
 
@@ -26,7 +25,7 @@ public class PersonValidator {
         boolean personExists = personFindServicePort.existsPersonById(id);
 
         if (!personExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -39,7 +38,7 @@ public class PersonValidator {
         boolean personExists = personFindServicePort.existsPersonById(id);
 
         if (personExists) {
-            throw new EntityAlreadyExistsException(currentClass, entityName, id.toString());
+            throw new EntityAlreadyExistsException(entityName, id.toString());
         }
     }
 
@@ -52,7 +51,7 @@ public class PersonValidator {
         boolean addressExists = personFindServicePort.existsAddressById(id);
 
         if (!addressExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -65,7 +64,7 @@ public class PersonValidator {
         boolean addressExists = personFindServicePort.existsAddressById(id);
 
         if (addressExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -78,7 +77,7 @@ public class PersonValidator {
         boolean consentExists = personFindServicePort.existsConsentById(id);
 
         if (!consentExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -91,7 +90,7 @@ public class PersonValidator {
         boolean consentExists = personFindServicePort.existsConsentById(id);
 
         if (consentExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -104,7 +103,7 @@ public class PersonValidator {
         boolean contactEmailExists = personFindServicePort.existsContactEmailById(id);
 
         if (!contactEmailExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -117,7 +116,7 @@ public class PersonValidator {
         boolean contactEmailExists = personFindServicePort.existsContactEmailById(id);
 
         if (contactEmailExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -130,7 +129,7 @@ public class PersonValidator {
         boolean contactTelephoneExists = personFindServicePort.existsContactTelephoneById(id);
 
         if (!contactTelephoneExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -143,7 +142,7 @@ public class PersonValidator {
         boolean contactTelephoneExists = personFindServicePort.existsContactTelephoneById(id);
 
         if (contactTelephoneExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 }

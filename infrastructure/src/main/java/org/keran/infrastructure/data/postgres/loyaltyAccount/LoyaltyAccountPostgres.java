@@ -18,15 +18,15 @@ import java.util.Date;
 @Table(name = "loyalty_account")
 public class LoyaltyAccountPostgres extends AbstractPostgresEntity {
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_customer_id", referencedColumnName = "id", nullable = false)
     private LoyaltyCustomerPostgres loyaltyCustomerPostgres;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_program_id",referencedColumnName = "id",  nullable = false)
     private LoyaltyProgramPostgres loyaltyProgramPostgres;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "loyalty_account_type_id", referencedColumnName = "id", nullable = false)
     private DefLoyaltyAccountTypePostgres loyaltyAccountType;
 

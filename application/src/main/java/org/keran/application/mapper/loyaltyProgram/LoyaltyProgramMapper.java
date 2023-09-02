@@ -18,7 +18,18 @@ public interface LoyaltyProgramMapper {
     List<LoyaltyProgramDto> loyaltyProgramApiObjectListToDtoList(List<LoyaltyProgramApiObject> loyaltyProgramApiObjectList);
     List<LoyaltyProgramApiObject> loyaltyProgramDtoListToApiObjectList(List<LoyaltyProgramDto> loyaltyProgramDtoList);
 
-    default LocalDateTime map(LocalDate date) {
+    static LocalDateTime map(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+
         return date.atStartOfDay();
+    }
+    static LocalDate map(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
+
+        return dateTime.toLocalDate();
     }
 }

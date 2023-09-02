@@ -1,6 +1,5 @@
 package org.keran.application.controller.loyaltyCustomer;
 
-import org.keran.application.exception.common.FieldIsMissingException;
 import org.keran.application.mapper.loyaltyCustomer.LoyaltyCustomerMapper;
 import org.keran.application.utility.loyaltyCustomer.LoyaltyCustomerResponseFactory;
 import org.keran.domain.data.loyaltyCustomer.LoyaltyCustomerDto;
@@ -18,7 +17,6 @@ import java.util.UUID;
 
 @RestController
 public class LoyaltyCustomerFindController implements LoyaltyCustomerFindControllerApi {
-    private final Object currentClass = LoyaltyCustomerFindController.class;
     private final LoyaltyCustomerFindServicePort loyaltyCustomerFindServicePort;
 
     public LoyaltyCustomerFindController(LoyaltyCustomerFindServicePort loyaltyCustomerFindServicePort) {
@@ -27,13 +25,10 @@ public class LoyaltyCustomerFindController implements LoyaltyCustomerFindControl
 
     @Override
     public ResponseEntity<LoyaltyCustomerResponseObject> findLoyaltyCustomerById(@PathVariable UUID loyaltyCustomerId) {
-        // Api validation
-        String entity = "LoyaltyCustomer";
-        if (loyaltyCustomerId == null) {
-            throw new FieldIsMissingException(currentClass, entity, "LoyaltyCustomerId");
-        }
-
+        // Find
         Optional<LoyaltyCustomerDto> loyaltyCustomerDto = loyaltyCustomerFindServicePort.findLoyaltyCustomerById(loyaltyCustomerId);
+
+        // Prepare response
         if (loyaltyCustomerDto.isPresent()) {
             LoyaltyCustomerApiObject loyaltyCustomerApiObjectCreated =
                     LoyaltyCustomerMapper.INSTANCE.loyaltyCustomerDtoToApiObject(loyaltyCustomerDto.get());
@@ -41,7 +36,7 @@ public class LoyaltyCustomerFindController implements LoyaltyCustomerFindControl
                     String.format("1 loyalty customer found with ID: %s", loyaltyCustomerDto.get().getId().toString()),
                     List.of(loyaltyCustomerApiObjectCreated));
         } else {
-            throw new EntityNotFoundException(currentClass, entity, loyaltyCustomerId.toString());
+            throw new EntityNotFoundException(LoyaltyCustomerApiObject.class.getSimpleName(), loyaltyCustomerId.toString());
         }
     }
 }

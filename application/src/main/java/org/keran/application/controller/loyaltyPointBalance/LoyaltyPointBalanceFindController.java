@@ -2,13 +2,13 @@ package org.keran.application.controller.loyaltyPointBalance;
 
 import org.keran.application.mapper.loyaltyPointBalance.LoyaltyPointBalanceMapper;
 import org.keran.application.utility.loyaltyPointBalance.LoyaltyPointBalanceResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyPointBalance.LoyaltyPointBalanceDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyPointBalance.LoyaltyPointBalanceFindServicePort;
 import org.keran.infrastructure.data.LoyaltyPointBalanceApiObject;
 import org.keran.infrastructure.data.LoyaltyPointBalanceResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,9 +24,7 @@ public class LoyaltyPointBalanceFindController implements LoyaltyPointBalanceFin
     }
 
     @Override
-    public ResponseEntity<LoyaltyPointBalanceResponseObject> findLoyaltyPointBalanceById(UUID loyaltyPointBalanceId) {
-        // API validation:
-        CommonApiValidator.validateFieldExists(loyaltyPointBalanceId, "loyaltyPointBalance", "loyaltyPointBalanceId");
+    public ResponseEntity<LoyaltyPointBalanceResponseObject> findLoyaltyPointBalanceById(@PathVariable UUID loyaltyPointBalanceId) {
         // Find
         Optional<LoyaltyPointBalanceDto> loyaltyPointBalanceDto =
                 loyaltyPointBalanceFindServicePort.findLoyaltyPointBalanceById(loyaltyPointBalanceId);
@@ -38,7 +36,7 @@ public class LoyaltyPointBalanceFindController implements LoyaltyPointBalanceFin
                     List.of(loyaltyPointBalanceApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyPointBalanceFindController.class, "LoyaltyPointBalance", loyaltyPointBalanceId.toString());
+            throw new EntityNotFoundException(LoyaltyPointBalanceDto.class.getSimpleName(), loyaltyPointBalanceId.toString());
         }
     }
 }

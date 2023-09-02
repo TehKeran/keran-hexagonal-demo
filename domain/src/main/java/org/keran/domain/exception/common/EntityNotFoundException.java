@@ -3,16 +3,21 @@ package org.keran.domain.exception.common;
 import org.springframework.util.StringUtils;
 
 public class EntityNotFoundException extends RuntimeException {
-    public EntityNotFoundException(Object throwable, String entity, String id) {
-        super(EntityNotFoundException.generateMessage(throwable.toString(), entity, id));
+    public EntityNotFoundException(String entity, String id) {
+        super(EntityNotFoundException.generateMessage(entity, id));
+    }
+    public EntityNotFoundException(String entity) {
+        super(EntityNotFoundException.generateMessage(entity));
     }
 
-    private static String generateMessage(String callingClass, String entity, String id) {
-        String[] callingClassElements = callingClass.split("\\.");
-        String callingClassSimpleName = callingClassElements[callingClassElements.length-1];
-        return String.format("%s: the entity %s with ID: %s does not exist in the database",
-                StringUtils.capitalize(callingClassSimpleName),
+    private static String generateMessage(String entity, String id) {
+        return String.format("Entity %s with ID: %s not found",
                 StringUtils.capitalize(entity),
                 id);
+    }
+
+    private static String generateMessage(String entity) {
+        return String.format("Entity %s not found",
+                StringUtils.capitalize(entity));
     }
 }

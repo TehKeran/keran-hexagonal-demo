@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyEvent;
 
 import org.keran.application.mapper.loyaltyEvent.LoyaltyEventMapper;
 import org.keran.application.utility.loyaltyEvent.LoyaltyEventResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyEvent.LoyaltyEventApiValidator;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -27,7 +26,6 @@ public class LoyaltyEventAddController implements  LoyaltyEventAddControllerApi 
     @Override
     public ResponseEntity<LoyaltyEventResponseObject> addLoyaltyEventById(@RequestBody LoyaltyEventApiObject loyaltyEventApiObject) {
         // API validation:
-        CommonApiValidator.validateEntityExists(loyaltyEventApiObject, "loyaltyEventApiObject");
         LoyaltyEventApiValidator.validateLoyaltyEventApiObject(loyaltyEventApiObject);
 
         // Create (with validations)
@@ -43,7 +41,7 @@ public class LoyaltyEventAddController implements  LoyaltyEventAddControllerApi 
                     List.of(loyaltyEventApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyEventAddController.class, "LoyaltyEvent", "null");
+            throw new EntityNotCreatedException(LoyaltyEventDto.class.getSimpleName());
         }
     }
 }

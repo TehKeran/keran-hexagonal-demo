@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyAccount;
 
 import org.keran.application.mapper.loyaltyAccount.LoyaltyAccountMapper;
 import org.keran.application.utility.loyaltyAccount.LoyaltyAccountResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyAccount.LoyaltyAccountApiValidator;
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -25,14 +24,16 @@ public class LoyaltyAccountAddController implements LoyaltyAccountAddControllerA
     }
 
     @Override
-    public ResponseEntity<LoyaltyAccountResponseObject> addLoyaltyAccountById(@PathVariable UUID loyaltyCustomerId, @RequestBody LoyaltyAccountApiObject loyaltyAccountApiObject) {
+    public ResponseEntity<LoyaltyAccountResponseObject> addLoyaltyAccountById(
+            @PathVariable UUID loyaltyProgramId,
+            @PathVariable UUID loyaltyCustomerId,
+            @RequestBody LoyaltyAccountApiObject loyaltyAccountApiObject) {
         // API validation
-        CommonApiValidator.validateFieldExists(loyaltyCustomerId, "LoyaltyAccount", "LoyaltyCustomerId");
-        CommonApiValidator.validateEntityExists(loyaltyAccountApiObject, "LoyaltyAccountApiObject");
         LoyaltyAccountApiValidator.validateLoyaltyAccountApiObject(loyaltyAccountApiObject);
 
         // Create (with validation)
         loyaltyAccountApiObject.setLoyaltyCustomerId(loyaltyCustomerId);
+        loyaltyAccountApiObject.setLoyaltyProgramId(loyaltyProgramId);
         LoyaltyAccountDto loyaltyAccountDto = LoyaltyAccountMapper.INSTANCE.loyaltyAccountApiObjectToDto(loyaltyAccountApiObject);
         Optional<LoyaltyAccountDto> loyaltyAccountDtoCreated = loyaltyAccountAddServicePort.addLoyaltyAccount(loyaltyAccountDto);
 
@@ -46,7 +47,7 @@ public class LoyaltyAccountAddController implements LoyaltyAccountAddControllerA
                     List.of(loyaltyAccountApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyAccountAddController.class, "LoyaltyAccount", "null");
+            throw new EntityNotCreatedException(LoyaltyAccountDto.class.getSimpleName());
         }
     }
 }

@@ -6,13 +6,15 @@ import org.keran.infrastructure.data.LoyaltyCardApiObject;
 
 @UtilityClass
 public class LoyaltyCardApiValidator {
-    private static final Object currentClass = LoyaltyCardApiValidator.class;
     public static void validateLoyaltyCardApiObject(LoyaltyCardApiObject loyaltyCardApiObject) {
         if (loyaltyCardApiObject.getCardNumber() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyCardApiObject", "CardNumber");
+            throw new FieldIsMissingException(LoyaltyCardApiObject.class.getSimpleName(), "CardNumber");
         }
         if (loyaltyCardApiObject.getDisplayName() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyCardApiObject", "DisplayName");
+            throw new FieldIsMissingException(LoyaltyCardApiObject.class.getSimpleName(), "DisplayName");
+        }
+        if (loyaltyCardApiObject.getCardType() == null) {
+            throw new FieldIsMissingException(LoyaltyCardApiObject.class.getSimpleName(), "CardType");
         }
     }
 }

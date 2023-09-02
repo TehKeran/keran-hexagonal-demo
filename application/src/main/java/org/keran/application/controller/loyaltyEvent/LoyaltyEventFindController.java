@@ -2,19 +2,15 @@ package org.keran.application.controller.loyaltyEvent;
 
 import org.keran.application.mapper.loyaltyEvent.LoyaltyEventMapper;
 import org.keran.application.utility.loyaltyEvent.LoyaltyEventResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyEvent.LoyaltyEventFindServicePort;
 import org.keran.infrastructure.data.LoyaltyEventApiObject;
 import org.keran.infrastructure.data.LoyaltyEventResponseObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,9 +25,6 @@ public class LoyaltyEventFindController implements LoyaltyEventFindControllerApi
 
     @Override
     public ResponseEntity<LoyaltyEventResponseObject> findLoyaltyEventById(@PathVariable UUID loyaltyEventId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventId, "LoyaltyEvent", "loyaltyEventId");
-
         // Find
         Optional<LoyaltyEventDto> loyaltyEventDto = loyaltyEventFindServicePort.findLoyaltyEventById(loyaltyEventId);
 
@@ -44,7 +37,7 @@ public class LoyaltyEventFindController implements LoyaltyEventFindControllerApi
                     List.of(loyaltyEventApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyEventFindController.class, "LoyaltyEvent", loyaltyEventId.toString());
+            throw new EntityNotFoundException(LoyaltyEventDto.class.getSimpleName(), loyaltyEventId.toString());
         }
     }
 }

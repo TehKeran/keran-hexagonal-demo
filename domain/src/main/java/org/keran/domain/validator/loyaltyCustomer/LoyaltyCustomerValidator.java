@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @Service
 public class LoyaltyCustomerValidator {
-    private final Object currentClass = LoyaltyCustomerValidator.class;
     private final String entityName = "LoyaltyCustomer";
 
     private final LoyaltyCustomerFindServicePort loyaltyCustomerFindServicePort;
@@ -28,7 +27,7 @@ public class LoyaltyCustomerValidator {
         boolean loyaltyCustomerExists = loyaltyCustomerFindServicePort.existsById(id);
 
         if (!loyaltyCustomerExists) {
-            throw new EntityNotFoundException(currentClass, entityName, id.toString());
+            throw new EntityNotFoundException(entityName, id.toString());
         }
     }
 
@@ -41,7 +40,7 @@ public class LoyaltyCustomerValidator {
         boolean loyaltyCustomerExists = loyaltyCustomerFindServicePort.existsById(id);
 
         if (loyaltyCustomerExists) {
-            throw new EntityAlreadyExistsException(currentClass, entityName, id.toString());
+            throw new EntityAlreadyExistsException(entityName, id.toString());
         }
     }
 
@@ -55,7 +54,7 @@ public class LoyaltyCustomerValidator {
         boolean loyaltyCustomerExists = loyaltyCustomerFindServicePort.existsByCustomerNumber(customerNumber);
 
         if (loyaltyCustomerExists) {
-            throw new LoyaltyCustomerNumberAlreadyExistsException(currentClass, customerNumber);
+            throw new LoyaltyCustomerNumberAlreadyExistsException(customerNumber);
         }
     }
 }

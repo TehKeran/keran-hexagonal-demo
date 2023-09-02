@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyEventConfiguration;
 
 import org.keran.application.mapper.loyaltyEventConfiguration.LoyaltyEventConfigurationMapper;
 import org.keran.application.utility.loyaltyEventConfiguration.LoyaltyEventConfigurationResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventConfigurationDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyEvent.LoyaltyEventUpdateServicePort;
@@ -27,10 +26,6 @@ public class LoyaltyEventConfigurationUpdateController implements LoyaltyEventCo
     @Override
     public ResponseEntity<LoyaltyEventConfigurationResponseObject> updateLoyaltyEventConfiguration(@PathVariable UUID loyaltyEventConfigurationId,
                                                                                                    @RequestBody LoyaltyEventConfigurationApiObject loyaltyEventConfigurationApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventConfigurationId, "loyaltyEventConfiguration", "loyaltyEventConfigurationId");
-        CommonApiValidator.validateEntityExists(loyaltyEventConfigurationApiObject, "loyaltyEventConfigurationApiObject");
-
         // Update (with validations)
         loyaltyEventConfigurationApiObject.setId(loyaltyEventConfigurationId);
         LoyaltyEventConfigurationDto loyaltyEventConfigurationDto =
@@ -46,7 +41,7 @@ public class LoyaltyEventConfigurationUpdateController implements LoyaltyEventCo
                     List.of(loyaltyEventConfigurationApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyEventConfigurationUpdateController.class, "LoyaltyEventConfiguration", "null");
+            throw new EntityNotCreatedException(LoyaltyEventConfigurationDto.class.getSimpleName());
         }
     }
 }

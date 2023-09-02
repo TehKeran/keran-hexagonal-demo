@@ -30,4 +30,9 @@ public class LoyaltyProgramFindService implements LoyaltyProgramFindServicePort 
     public boolean existsById(UUID id) {
         return loyaltyProgramFindPersistencePort.existsById(id);
     }
+
+    @Override
+    public boolean existsByName(String name) {
+        return loyaltyProgramFindPersistencePort.existsByName(name);
+    }
 }

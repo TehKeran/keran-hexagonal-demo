@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyCard;
 
 import org.keran.application.mapper.loyaltyCard.LoyaltyCardMapper;
 import org.keran.application.utility.loyaltyCard.LoyaltyCardResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyCard.LoyaltyCardDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.loyaltyCard.LoyaltyCardUpdateServicePort;
@@ -24,11 +23,9 @@ public class LoyaltyCardUpdateController implements LoyaltyCardUpdateControllerA
     }
 
     @Override
-    public ResponseEntity<LoyaltyCardResponseObject> updateLoyaltyCard(@PathVariable UUID loyaltyCardId, @RequestBody LoyaltyCardApiObject loyaltyCardApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyCardApiObject, "LoyaltyCard", "loyaltyCardId");
-        CommonApiValidator.validateEntityExists(loyaltyCardApiObject, "loyaltyCardApiObject");
-
+    public ResponseEntity<LoyaltyCardResponseObject> updateLoyaltyCard(
+            @PathVariable UUID loyaltyCardId,
+            @RequestBody LoyaltyCardApiObject loyaltyCardApiObject) {
         // Update (with validation)
         loyaltyCardApiObject.setId(loyaltyCardId);
         LoyaltyCardDto loyaltyCardDto = LoyaltyCardMapper.INSTANCE.loyaltyCardApiObjectToDto(loyaltyCardApiObject);
@@ -43,7 +40,7 @@ public class LoyaltyCardUpdateController implements LoyaltyCardUpdateControllerA
                     List.of(loyaltyCardApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyCardUpdateController.class, "LoyaltyCard", "null");
+            throw new EntityNotCreatedException(LoyaltyCardDto.class.getSimpleName());
         }
     }
 }

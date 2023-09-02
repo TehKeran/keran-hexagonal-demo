@@ -2,13 +2,14 @@ package org.keran.application.controller.person;
 
 import org.keran.application.mapper.person.PersonMapper;
 import org.keran.application.utility.person.PersonResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.person.PersonDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
 import org.keran.domain.ports.api.person.PersonUpdateServicePort;
 import org.keran.infrastructure.data.PersonApiObject;
 import org.keran.infrastructure.data.PersonResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,11 +25,8 @@ public class PersonUpdateController implements PersonUpdateControllerApi {
     }
 
     @Override
-    public ResponseEntity<PersonResponseObject> updatePerson(UUID personId, PersonApiObject personApiObject) {
-        // API validation
-        CommonApiValidator.validateFieldExists(personId, "person", "personId");
-        CommonApiValidator.validateEntityExists(personApiObject, "Person");
-
+    public ResponseEntity<PersonResponseObject> updatePerson(@PathVariable UUID personId,
+                                                             @RequestBody PersonApiObject personApiObject) {
         // Update (with validations)
         personApiObject.setId(personId);
         PersonDto personDto = PersonMapper.INSTANCE.personApiObjectToDto(personApiObject);
@@ -42,7 +40,7 @@ public class PersonUpdateController implements PersonUpdateControllerApi {
                     List.of(personApiObjectUpdated));
         }
         else {
-            throw new EntityNotCreatedException(PersonUpdateController.class, "Person", "null");
+            throw new EntityNotCreatedException(PersonDto.class.getSimpleName());
         }
     }
 }

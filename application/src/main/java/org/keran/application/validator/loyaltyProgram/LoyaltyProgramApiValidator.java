@@ -9,10 +9,10 @@ public class LoyaltyProgramApiValidator {
     private static final Object currentClass = LoyaltyProgramApiValidator.class;
     public static void validateLoyaltyProgramApiObject(LoyaltyProgramApiObject loyaltyProgramApiObject) {
         if (loyaltyProgramApiObject.getName() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyProgramApiObject", "Name");
+            throw new FieldIsMissingException(LoyaltyProgramApiObject.class.getSimpleName(), "Name");
         }
         if (loyaltyProgramApiObject.getStartDate() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyProgramApiObject", "StartDate");
+            throw new FieldIsMissingException(LoyaltyProgramApiObject.class.getSimpleName(), "StartDate");
         }
     }
 }

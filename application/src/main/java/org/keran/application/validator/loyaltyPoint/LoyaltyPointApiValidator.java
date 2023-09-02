@@ -6,10 +6,9 @@ import org.keran.infrastructure.data.LoyaltyPointApiObject;
 
 @UtilityClass
 public class LoyaltyPointApiValidator {
-    private static final Object currentClass = LoyaltyPointApiValidator.class;
     public static void validateLoyaltyPointApiObject(LoyaltyPointApiObject loyaltyPointApiObject) {
         if (loyaltyPointApiObject.getName() == null) {
-            throw new FieldIsMissingException(currentClass, "LoyaltyPointApiObject", "name");
+            throw new FieldIsMissingException(LoyaltyPointApiObject.class.getSimpleName(), "name");
         }
     }
 }

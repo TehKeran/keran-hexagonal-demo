@@ -2,19 +2,15 @@ package org.keran.application.controller.loyaltyEventConfiguration;
 
 import org.keran.application.mapper.loyaltyEventConfiguration.LoyaltyEventConfigurationMapper;
 import org.keran.application.utility.loyaltyEventConfiguration.LoyaltyEventConfigurationResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventConfigurationDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyEvent.LoyaltyEventFindServicePort;
 import org.keran.infrastructure.data.LoyaltyEventConfigurationApiObject;
 import org.keran.infrastructure.data.LoyaltyEventConfigurationResponseObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,11 +25,10 @@ public class LoyaltyEventConfigurationFindController implements LoyaltyEventConf
 
     @Override
     public ResponseEntity<LoyaltyEventConfigurationResponseObject> findLoyaltyEventConfigurationById(@PathVariable UUID loyaltyEventConfigurationId) {
-        // API validation
-        CommonApiValidator.validateFieldExists(loyaltyEventConfigurationId, "loyaltyEventConfiguration", "loyaltyEventConfigurationId");
         // Find
         Optional<LoyaltyEventConfigurationDto> loyaltyEventConfigurationDto =
                 loyaltyEventFindServicePort.findLoyaltyEventConfigurationById(loyaltyEventConfigurationId);
+
         // Prepare response
         if (loyaltyEventConfigurationDto.isPresent()) {
             LoyaltyEventConfigurationApiObject loyaltyEventConfigurationApiObject =
@@ -44,7 +39,7 @@ public class LoyaltyEventConfigurationFindController implements LoyaltyEventConf
                     List.of(loyaltyEventConfigurationApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyEventConfigurationFindController.class, "loyaltyEventConfiguration", loyaltyEventConfigurationId.toString());
+            throw new EntityNotFoundException(LoyaltyEventConfigurationDto.class.getSimpleName(), loyaltyEventConfigurationId.toString());
         }
     }
 }

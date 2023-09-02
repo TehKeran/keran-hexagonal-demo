@@ -21,8 +21,10 @@ public class PersonAddService implements PersonAddServicePort {
     @Override
     public Optional<PersonDto> addPerson(PersonDto personDto) {
         // Business validations:
-        // - Entity should not exist
-        personValidator.validatePersonNotExists(personDto.getId());
+        // - If ID is provided entity should not exist
+        if (personDto.getId() != null) {
+            personValidator.validatePersonNotExists(personDto.getId());
+        }
 
         return personAddPersistencePort.addPerson(personDto);
     }
@@ -30,17 +32,20 @@ public class PersonAddService implements PersonAddServicePort {
     @Override
     public Optional<AddressDto> addAddress(AddressDto addressDto) {
         // Business validations:
-        // - Entity should not exist
-        personValidator.validateAddressNotExists(addressDto.getId());
-
+        // - If ID is provided entity should not exist
+        if (addressDto.getId() != null) {
+            personValidator.validateAddressNotExists(addressDto.getId());
+        }
         return personAddPersistencePort.addAddress(addressDto);
     }
 
     @Override
     public Optional<ConsentDto> addConsent(ConsentDto consentDto) {
         // Business validations:
-        // - Entity should not exist
-        personValidator.validateConsentNotExists(consentDto.getId());
+        // - If ID is provided entity should not exist
+        if (consentDto.getId() != null) {
+            personValidator.validateConsentNotExists(consentDto.getId());
+        }
 
         return personAddPersistencePort.addConsent(consentDto);
     }
@@ -48,8 +53,10 @@ public class PersonAddService implements PersonAddServicePort {
     @Override
     public Optional<ContactEmailDto> addContactEmail(ContactEmailDto contactEmailDto) {
         // Business validations:
-        // - Entity should not exist
-        personValidator.validateContactEmailNotExists(contactEmailDto.getId());
+        // - If ID is provided entity should not exist
+        if (contactEmailDto.getId() != null) {
+            personValidator.validateContactEmailNotExists(contactEmailDto.getId());
+        }
 
         return personAddPersistencePort.addContactEmail(contactEmailDto);
     }
@@ -57,8 +64,10 @@ public class PersonAddService implements PersonAddServicePort {
     @Override
     public Optional<ContactTelephoneDto> addContactTelephone(ContactTelephoneDto contactTelephoneDto) {
         // Business validations:
-        // - Entity should not exist
-        personValidator.validateContactTelephoneNotExists(contactTelephoneDto.getId());
+        // - If ID is provided entity should not exist
+        if (contactTelephoneDto.getId() != null) {
+            personValidator.validateContactTelephoneNotExists(contactTelephoneDto.getId());
+        }
 
         return personAddPersistencePort.addContactTelephone(contactTelephoneDto);
     }

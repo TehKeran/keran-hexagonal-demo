@@ -6,7 +6,7 @@ info:
 servers:
   - url: "https://keran_fidelity_system_service/api/v1"
 paths:
-  /api/v1/loyaltyPointBalance/{loyaltyAccountId}:
+  /api/v1/loyaltyPointBalance/{loyaltyAccountId}/{loyaltyPointId}:
     post:
       tags:
         - LoyaltyPointBalanceAddController
@@ -17,6 +17,14 @@ paths:
         - name: "loyaltyAccountId"
           in: "path"
           description: "Existing database ID of a loyalty account"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+            example: "8d2f54d8-6ee7-4e20-854d-7fccc9b477b4"
+        - name: "loyaltyPointId"
+          in: "path"
+          description: "Existing database ID of a loyalty point"
           required: true
           schema:
             type: "string"

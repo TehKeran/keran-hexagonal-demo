@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyAccount;
 
 import org.keran.application.mapper.loyaltyAccount.LoyaltyAccountMapper;
 import org.keran.application.utility.loyaltyAccount.LoyaltyAccountResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyAccount.LoyaltyAccountDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyAccount.LoyaltyAccountFindServicePort;
@@ -26,9 +25,6 @@ public class LoyaltyAccountFindController implements LoyaltyAccountFindControlle
 
     @Override
     public ResponseEntity<LoyaltyAccountResponseObject> findLoyaltyAccountById(@PathVariable UUID loyaltyAccountId) {
-        // Api validation
-        CommonApiValidator.validateFieldExists(loyaltyAccountId, "LoyaltyAccount", "loyaltyAccountId");
-
         // Find
         Optional<LoyaltyAccountDto> loyaltyAccountDto = loyaltyAccountFindServicePort.findLoyaltyAccountById(loyaltyAccountId);
 
@@ -42,7 +38,7 @@ public class LoyaltyAccountFindController implements LoyaltyAccountFindControlle
                     List.of(loyaltyAccountApiObject));
         }
         else {
-            throw new EntityNotFoundException(LoyaltyAccountAddController.class, "LoyaltyAccount", loyaltyAccountId.toString());
+            throw new EntityNotFoundException(LoyaltyAccountDto.class.getSimpleName(), loyaltyAccountId.toString());
         }
     }
 }

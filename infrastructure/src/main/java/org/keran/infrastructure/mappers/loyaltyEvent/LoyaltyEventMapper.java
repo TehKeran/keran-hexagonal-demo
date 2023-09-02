@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -16,4 +18,18 @@ public interface LoyaltyEventMapper {
     LoyaltyEventPostgres loyaltyEventDtoToPostgres(LoyaltyEventDto loyaltyEventDto);
     List<LoyaltyEventPostgres> loyaltyEventDtoListToPostgresList(List<LoyaltyEventDto> loyaltyEventDtoList);
     List<LoyaltyEventDto> loyaltyEventPostgresListToDtoList(List<LoyaltyEventPostgres> loyaltyEventPostgresList);
+    static LocalDateTime map(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+
+        return date.atStartOfDay();
+    }
+    static LocalDate map(LocalDateTime dateTime) {
+        if (dateTime == null) {
+            return null;
+        }
+
+        return dateTime.toLocalDate();
+    }
 }

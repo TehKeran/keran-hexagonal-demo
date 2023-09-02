@@ -6,16 +6,15 @@ import org.keran.infrastructure.data.PersonApiObject;
 
 @UtilityClass
 public class PersonApiValidator {
-    private static final Object currentClass = PersonApiValidator.class;
     public static void validatePersonApiObject(PersonApiObject personApiObject) {
         if (personApiObject.getFirstName() == null) {
-            throw new FieldIsMissingException(currentClass, "Person", "firstName");
+            throw new FieldIsMissingException(PersonApiObject.class.getSimpleName(), "firstName");
         }
         if (personApiObject.getFirstLastName() == null) {
-            throw new FieldIsMissingException(currentClass, "Person", "firstLastName");
+            throw new FieldIsMissingException(PersonApiObject.class.getSimpleName(), "firstLastName");
         }
         if (personApiObject.getDateOfBirth() == null) {
-            throw new FieldIsMissingException(currentClass, "Person", "dateOfBirth");
+            throw new FieldIsMissingException(PersonApiObject.class.getSimpleName(), "dateOfBirth");
         }
     }
 }

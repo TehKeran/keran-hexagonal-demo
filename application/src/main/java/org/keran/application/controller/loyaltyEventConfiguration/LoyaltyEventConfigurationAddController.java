@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyEventConfiguration;
 
 import org.keran.application.mapper.loyaltyEventConfiguration.LoyaltyEventConfigurationMapper;
 import org.keran.application.utility.loyaltyEventConfiguration.LoyaltyEventConfigurationResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyEventConfiguration.LoyaltyEventConfigurationApiValidator;
 import org.keran.domain.data.loyaltyEvent.LoyaltyEventConfigurationDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -10,11 +9,13 @@ import org.keran.domain.ports.api.loyaltyEvent.LoyaltyEventAddServicePort;
 import org.keran.infrastructure.data.LoyaltyEventConfigurationApiObject;
 import org.keran.infrastructure.data.LoyaltyEventConfigurationResponseObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class LoyaltyEventConfigurationAddController implements LoyaltyEventConfigurationAddControllerApi {
@@ -25,12 +26,16 @@ public class LoyaltyEventConfigurationAddController implements LoyaltyEventConfi
     }
 
     @Override
-    public ResponseEntity<LoyaltyEventConfigurationResponseObject> addLoyaltyEventConfigurationById(@RequestBody LoyaltyEventConfigurationApiObject loyaltyEventConfigurationApiObject) {
+    public ResponseEntity<LoyaltyEventConfigurationResponseObject> addLoyaltyEventConfigurationById(
+            @PathVariable UUID loyaltyProgramId,
+            @PathVariable UUID loyaltyEventId,
+            @RequestBody LoyaltyEventConfigurationApiObject loyaltyEventConfigurationApiObject) {
         // API validation
-        CommonApiValidator.validateEntityExists(loyaltyEventConfigurationApiObject, "LoyaltyEventConfiguration");
         LoyaltyEventConfigurationApiValidator.validateLoyaltyEventConfigurationApiObject(loyaltyEventConfigurationApiObject);
 
         // Create (with validations)
+        loyaltyEventConfigurationApiObject.setLoyaltyProgramId(loyaltyProgramId);
+        loyaltyEventConfigurationApiObject.setLoyaltyEventId(loyaltyEventId);
         LoyaltyEventConfigurationDto loyaltyEventConfigurationDto =
                 LoyaltyEventConfigurationMapper.INSTANCE.loyaltyEventConfigurationApiObjectToDto(loyaltyEventConfigurationApiObject);
         Optional<LoyaltyEventConfigurationDto> loyaltyEventConfigurationDtoCreated =
@@ -45,7 +50,7 @@ public class LoyaltyEventConfigurationAddController implements LoyaltyEventConfi
                     List.of(loyaltyEventConfigurationApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyEventConfigurationAddController.class, "LoyaltyEventConfiguration", "null");
+            throw new EntityNotCreatedException(LoyaltyEventConfigurationDto.class.getSimpleName());
         }
     }
 }

@@ -2,7 +2,6 @@ package org.keran.application.controller.loyaltyPoint;
 
 import org.keran.application.mapper.loyaltyPoint.LoyaltyPointMapper;
 import org.keran.application.utility.loyaltyPoint.LoyaltyPointResponseFactory;
-import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.application.validator.loyaltyPoint.LoyaltyPointApiValidator;
 import org.keran.domain.data.loyaltyPoint.LoyaltyPointDto;
 import org.keran.domain.exception.common.EntityNotCreatedException;
@@ -28,7 +27,6 @@ public class LoyaltyPointAddController implements LoyaltyPointAddControllerApi {
     @Override
     public ResponseEntity<LoyaltyPointResponseObject> addLoyaltyPointById(@RequestBody LoyaltyPointApiObject loyaltyPointApiObject) {
         // API validation
-        CommonApiValidator.validateEntityExists(loyaltyPointApiObject, "loyaltyPointApiObject");
         LoyaltyPointApiValidator.validateLoyaltyPointApiObject(loyaltyPointApiObject);
 
         // Create (with validations)
@@ -44,7 +42,7 @@ public class LoyaltyPointAddController implements LoyaltyPointAddControllerApi {
                     List.of(loyaltyPointApiObjectCreated));
         }
         else {
-            throw new EntityNotCreatedException(LoyaltyPointAddController.class, "LoyaltyPoint", "null");
+            throw new EntityNotCreatedException(LoyaltyPointDto.class.getSimpleName());
         }
     }
 }

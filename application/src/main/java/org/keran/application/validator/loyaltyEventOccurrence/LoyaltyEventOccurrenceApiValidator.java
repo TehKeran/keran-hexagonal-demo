@@ -1,11 +1,12 @@
 package org.keran.application.validator.loyaltyEventOccurrence;
 
-import lombok.experimental.UtilityClass;
 import org.keran.application.exception.common.FieldIsMissingException;
 import org.keran.infrastructure.data.LoyaltyEventOccurrenceApiObject;
+import org.springframework.stereotype.Service;
 
-@UtilityClass
+@Service
 public class LoyaltyEventOccurrenceApiValidator {
+    private LoyaltyEventOccurrenceApiValidator() {}
     public static void validateLoyaltyEventOccurrenceApiObject(LoyaltyEventOccurrenceApiObject loyaltyEventOccurrenceApiObject) {
         if (loyaltyEventOccurrenceApiObject.getDateOfOccurrence() == null) {
             throw new FieldIsMissingException(LoyaltyEventOccurrenceApiObject.class.getSimpleName(), "DateOfOccurrence");

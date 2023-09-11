@@ -1,11 +1,12 @@
 package org.keran.application.validator.loyaltyCard;
 
-import lombok.experimental.UtilityClass;
 import org.keran.application.exception.common.FieldIsMissingException;
 import org.keran.infrastructure.data.LoyaltyCardApiObject;
+import org.springframework.stereotype.Service;
 
-@UtilityClass
+@Service
 public class LoyaltyCardApiValidator {
+    private LoyaltyCardApiValidator() {}
     public static void validateLoyaltyCardApiObject(LoyaltyCardApiObject loyaltyCardApiObject) {
         if (loyaltyCardApiObject.getCardNumber() == null) {
             throw new FieldIsMissingException(LoyaltyCardApiObject.class.getSimpleName(), "CardNumber");

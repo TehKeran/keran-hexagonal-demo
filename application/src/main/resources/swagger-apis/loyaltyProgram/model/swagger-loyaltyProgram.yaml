@@ -17,6 +17,8 @@ components:
           type: "string"
           format: "date"
           required: false
+        imageUrl:
+          type: "string"
         lastModificationOn:
           type: "string"
           format: "date"

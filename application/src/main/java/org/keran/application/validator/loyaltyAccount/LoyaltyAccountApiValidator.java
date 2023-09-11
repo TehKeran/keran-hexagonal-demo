@@ -1,12 +1,12 @@
 package org.keran.application.validator.loyaltyAccount;
 
-import lombok.experimental.UtilityClass;
 import org.keran.application.exception.common.FieldIsMissingException;
 import org.keran.infrastructure.data.LoyaltyAccountApiObject;
+import org.springframework.stereotype.Service;
 
-@UtilityClass
+@Service
 public class LoyaltyAccountApiValidator {
-
+    private LoyaltyAccountApiValidator() {}
     public static void validateLoyaltyAccountApiObject(LoyaltyAccountApiObject loyaltyAccountApiObject) {
         if (loyaltyAccountApiObject.getAccountNumber() == null) {
             throw new FieldIsMissingException(LoyaltyAccountApiObject.class.getSimpleName(), "AccountNumber");

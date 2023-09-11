@@ -35,3 +35,38 @@ paths:
             application/json:
               schema:
                 $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'
+  /api/v1/loyaltyProgram:
+    get:
+      tags:
+        - LoyaltyProgramFindController
+      summary: "Get loyalty Programs."
+      operationId: "getLoyaltyPrograms"
+      description: "Get all loyalty Programs, paginated"
+      parameters:
+        - name: "pageSize"
+          in: "query"
+          description: "Total number of elements in one page"
+          required: true
+          schema:
+            type: "int"
+            example: "25"
+        - name: "currentPage"
+          in: "query"
+          description: "Page number"
+          required: true
+          schema:
+            type: "int"
+            example: "0"
+      responses:
+        "200":
+          description: "OK - loyalty Program(s) found successfully"
+          content:
+            application/json:
+              schema:
+                $ref: '../model/swagger-loyaltyProgram-api-response-object.yaml#/components/schemas/loyaltyProgramResponseObject'
+        "404":
+          description: "NOT FOUND - no loyalty Program found"
+          content:
+            application/json:
+              schema:
+                $ref: '../../common/swagger-common-api-error-response-object.yaml#/components/schemas/commonApiErrorResponseObject'

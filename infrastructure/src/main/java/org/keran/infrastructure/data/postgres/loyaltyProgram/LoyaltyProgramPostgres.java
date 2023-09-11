@@ -21,6 +21,8 @@ public class LoyaltyProgramPostgres extends AbstractPostgresEntity {
 
     @Column(name = "description")
     private String description;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "start_date", nullable = false)
     private Date startDate;

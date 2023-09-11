@@ -1,7 +1,9 @@
 package org.keran.application.controller.loyaltyProgram;
 
+import org.keran.application.controller.AbstractController;
 import org.keran.application.mapper.loyaltyProgram.LoyaltyProgramMapper;
 import org.keran.application.utility.loyaltyProgram.LoyaltyProgramResponseFactory;
+import org.keran.application.validator.common.CommonApiValidator;
 import org.keran.domain.data.loyaltyProgram.LoyaltyProgramDto;
 import org.keran.domain.exception.common.EntityNotFoundException;
 import org.keran.domain.ports.api.loyaltyProgram.LoyaltyProgramFindServicePort;
@@ -16,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-public class LoyaltyProgramFindController implements LoyaltyProgramFindControllerApi {
+public class LoyaltyProgramFindController implements LoyaltyProgramFindControllerApi, AbstractController {
     private final LoyaltyProgramFindServicePort loyaltyProgramFindServicePort;
 
     public LoyaltyProgramFindController(LoyaltyProgramFindServicePort loyaltyProgramFindServicePort) {
@@ -39,4 +41,26 @@ public class LoyaltyProgramFindController implements LoyaltyProgramFindControlle
             throw new EntityNotFoundException(LoyaltyProgramDto.class.getSimpleName());
         }
     }
+
+
+    @Override
+    public ResponseEntity<LoyaltyProgramResponseObject> getLoyaltyPrograms(Integer pageSize, Integer currentPage) {
+        // API validation
+        CommonApiValidator.validateQueryParameterField(pageSize, "pageSize");
+        CommonApiValidator.validateQueryParameterField(currentPage, "currentPage");
+
+        // Get
+        List<LoyaltyProgramDto> loyaltyProgramDtoList =
+                loyaltyProgramFindServicePort.getLoyaltyPrograms(pageSize, currentPage);
+
+        // Prepare response
+        List<LoyaltyProgramApiObject> loyaltyProgramApiObjectList =
+                LoyaltyProgramMapper.INSTANCE.loyaltyProgramDtoListToApiObjectList(loyaltyProgramDtoList);
+
+        return LoyaltyProgramResponseFactory.preparePositiveResponseEntity(
+                String.format("%s Loyalty Program(s) found", loyaltyProgramApiObjectList.size()),
+                loyaltyProgramApiObjectList
+        );
+    }
+
 }

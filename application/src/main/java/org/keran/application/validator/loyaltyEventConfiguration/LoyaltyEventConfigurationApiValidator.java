@@ -1,11 +1,12 @@
 package org.keran.application.validator.loyaltyEventConfiguration;
 
-import lombok.experimental.UtilityClass;
 import org.keran.application.exception.common.FieldIsMissingException;
 import org.keran.infrastructure.data.LoyaltyEventConfigurationApiObject;
+import org.springframework.stereotype.Service;
 
-@UtilityClass
+@Service
 public class LoyaltyEventConfigurationApiValidator {
+    private LoyaltyEventConfigurationApiValidator() {}
     public static void validateLoyaltyEventConfigurationApiObject(LoyaltyEventConfigurationApiObject loyaltyEventConfigurationApiObject) {
         if (loyaltyEventConfigurationApiObject.getLoyaltyPointsToAward() == null) {
             throw new FieldIsMissingException(LoyaltyEventConfigurationApiObject.class.getSimpleName(), "loyaltyPointsToAward");

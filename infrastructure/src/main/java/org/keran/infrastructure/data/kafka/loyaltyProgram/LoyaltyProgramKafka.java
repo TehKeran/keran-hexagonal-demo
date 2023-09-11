@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class LoyaltyProgramKafka extends AbstractKafkaEntity {
     private String name;
     private String description;
+    private String imageUrl;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }

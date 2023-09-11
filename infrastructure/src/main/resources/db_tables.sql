@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS loyalty_program (
     description                 varchar(255) not null,
     start_date                  timestamp not null,
     end_date                    timestamp not null,
+    image_url                   varchar(255),
     last_modification_by        varchar(255),
     last_modification_on        timestamp
 );
